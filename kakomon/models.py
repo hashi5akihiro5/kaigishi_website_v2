@@ -1,0 +1,77 @@
+from .constants import EXAMTYPE, NAVIGATION_OR_MECHANISM, GRADE, SUBJECT
+from datetime import date
+from django.db import models
+import os
+
+
+"""試験モデル"""
+class Exam(models.Model):
+    def get_exam_id():
+        today = date.today()
+        exam_id = "".join(
+            [str(1),# 筆記口述種類（1:筆記, 2:口述）
+            str(1),# 航機種類（1:航海, 2:機関）
+            str(1),# 級名(1:1級, 2:2級, 3:3級)
+            str(today.year),# 年度
+            str(today.month),# 月度
+            ])
+        return exam_id
+    
+    exam_id = models.IntegerField(default=get_exam_id)
+    date = models.DateField(verbose_name='定期')
+    exam_type = models.CharField(verbose_name="筆記・口述", choices=EXAMTYPE, max_length=8)
+    grade = models.CharField(verbose_name="級名", choices=GRADE, max_length=6)
+    navigation_or_mechanism = models.CharField(verbose_name="航海・機関", choices=NAVIGATION_OR_MECHANISM, max_length=10)
+    
+
+    def __str__(self):
+        return f'{self.date.year}年 {self.date.month}月 {self.get_exam_type_display()} {self.get_grade_display()} {self.get_navigation_or_mechanism_display()}'
+    
+    class Meta:
+        ordering = ["exam_id"]
+
+
+"""科目モデル"""
+class Subject(models.Model):
+    exam = models.ForeignKey(Exam, on_delete=models.CASCADE, related_name='subjects', verbose_name='試験')
+    name = models.CharField(verbose_name="科目", choices=SUBJECT, max_length=10)
+
+    def __str__(self):
+        return f'{self.exam.date.year}年 {self.exam.date.month}月 {self.exam.get_exam_type_display()} {self.exam.get_grade_display()} {self.exam.get_navigation_or_mechanism_display()} {self.get_name_display()}'
+    
+    class Meta:
+        ordering = ["exam__exam_id", "name"]
+    
+
+"""問題モデル"""
+class Question(models.Model):
+    def get_image_upload_path(instance, filename):
+        return os.path.join(
+            str(instance.subject.exam.get_exam_type_display()),
+            str(instance.subject.exam.get_grade_display()),
+            str(instance.subject.exam.get_navigation_or_mechanism_display()),
+            str(instance.subject.exam.date.year),
+            str(instance.subject.exam.date.month),
+            str(instance.subject.get_name_display()),
+            f'大問{str(instance.daimon)}',
+            filename
+        )
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE, verbose_name='科目')
+    daimon = models.PositiveSmallIntegerField()
+    shomon = models.PositiveSmallIntegerField(null=True, blank=True)
+    edamon = models.PositiveSmallIntegerField(null=True, blank=True)
+    question_image = models.ImageField(upload_to=get_image_upload_path, null=True, blank=True)
+    answer_image = models.ImageField(upload_to=get_image_upload_path, null=True, blank=True)
+    question_description = models.TextField(null=True, blank=True)
+    question = models.TextField()
+    answer_no_indent = models.BooleanField(default=False)
+    answer = models.TextField()
+
+    def __str__(self):
+        if self.edamon:
+            return f'{self.subject.exam.date.year}年 {self.subject.exam.date.month}月 {self.subject.exam.get_exam_type_display()} {self.subject.exam.get_grade_display()} {self.subject.exam.get_navigation_or_mechanism_display()} {self.subject.get_name_display()}_大問{self.daimon}_小問{self.shomon}_枝問{self.edamon}'
+        else:
+            return f'{self.subject.exam.date.year}年 {self.subject.exam.date.month}月 {self.subject.exam.get_exam_type_display()} {self.subject.exam.get_grade_display()} {self.subject.exam.get_navigation_or_mechanism_display()} {self.subject.get_name_display()}_大問{self.daimon}_小問{self.shomon}'
+        
+    class Meta:
+        ordering = ["subject", "daimon", "shomon", "edamon"]
