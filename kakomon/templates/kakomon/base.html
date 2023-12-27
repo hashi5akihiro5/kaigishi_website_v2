@@ -17,10 +17,53 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="ナビゲーションの切替"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="#">ホーム</a></li>
+                        <li class="nav-item"><a class="nav-link" href={% url 'kakomon:index' %}>ホーム</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">マイページ</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">ユーザー情報</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">ログアウト</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">お問合せ</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <nav class="navbar navbar-expand-lg justify-content-center mb-3">
+            <div class="d-flex">
+                <div class="dropdown me-3">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false">
+                        筆記試験  航 海
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <li><a class="dropdown-item" href={% url 'kakomon:exam_list' "筆記" "航海" "1級" %}>航 海  1級</a></li>
+                        <li><a class="dropdown-item" href={% url 'kakomon:exam_list' "筆記" "航海" "2級" %}>航 海  2級</a></li>
+                        <li><a class="dropdown-item" href={% url 'kakomon:exam_list' "筆記" "航海" "3級" %}>航 海  3級</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown me-3">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false">
+                        筆記試験  機 関
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <li><a class="dropdown-item" href="#">機 関  1級</a></li>
+                        <li><a class="dropdown-item" href="#">機 関  2級</a></li>
+                        <li><a class="dropdown-item" href="#">機 関  3級</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown me-3">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false">
+                        口述試験  航 海
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <li><a class="dropdown-item" href="#">航 海  1級</a></li>
+                        <li><a class="dropdown-item" href="#">航 海  2級</a></li>
+                        <li><a class="dropdown-item" href="#">航 海  3級</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false">
+                        口述試験  機 関
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <li><a class="dropdown-item" href="#">機 関  1級</a></li>
+                        <li><a class="dropdown-item" href="#">機 関  2級</a></li>
+                        <li><a class="dropdown-item" href="#">機 関  3級</a></li>
                     </ul>
                 </div>
             </div>
@@ -36,7 +79,8 @@
                 </div>
             {% endif %}
             {% block search %}{% endblock %}
-            {% block content %}{% endblock %}
+            <div class="container mb-3">
+                {% block content %}{% endblock %}
             </div>
         </main>
 

@@ -1,0 +1,18 @@
+{% extends 'kakomon/base.html' %}
+{% block content %}
+    {% for exam in exams %}
+        {% ifchanged %}
+        <div class="title">
+            <h2>{{ exam.get_exam_type_display }}試験  {{ exam.get_navigation_or_mechanism_display }}  {{ exam.get_grade_display }}</h2>
+        </div>
+        {% endifchanged %}
+        {% ifchanged %}
+        <div class="subtitle mb-2">
+            <h3>{{ exam.date.year }}年度</h3>
+        </div>
+        {% endifchanged %}
+        <a type="button" class="px-4 btn btn-outline-primary" href={% url 'kakomon:subject_list' exam.get_exam_type_display exam.get_navigation_or_mechanism_display exam.get_grade_display exam.date.year exam.date.month %}>
+            {{ exam.date.month }} 月度
+        </a>
+    {% endfor %}
+{% endblock %}
