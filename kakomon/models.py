@@ -1,4 +1,4 @@
-from .constants import EXAMTYPE, NAVIGATION_OR_MECHANISM, GRADE, SUBJECT, SHOMON
+from .constants import EXAMTYPE, NAVIGATION_OR_MECHANISM, GRADE, SUBJECT, SHOMON, SUBJECT_CHOICES
 from datetime import date
 from django.db import models
 import os
@@ -28,19 +28,24 @@ class Exam(models.Model):
         return f'{self.date.year}年 {self.date.month}月 {self.get_exam_type_display()} {self.get_grade_display()} {self.get_navigation_or_mechanism_display()}'
     
     class Meta:
-        ordering = ["exam_id"]
+        ordering = ["-exam_id"]
 
 
 """科目モデル"""
 class Subject(models.Model):
     exam = models.ForeignKey(Exam, on_delete=models.CASCADE, related_name='subjects', verbose_name='試験')
     name = models.CharField(verbose_name="科目", choices=SUBJECT, max_length=10)
+    name_order = models.IntegerField(verbose_name="科目順序", choices=[(v, k) for k, v in SUBJECT_CHOICES.items()])
+
+    def save(self, *args, **kwargs):
+        self.name_order = SUBJECT_CHOICES.get(self.name, 0)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f'{self.exam.date.year}年 {self.exam.date.month}月 {self.exam.get_exam_type_display()} {self.exam.get_grade_display()} {self.exam.get_navigation_or_mechanism_display()} {self.get_name_display()}'
     
     class Meta:
-        ordering = ["exam__exam_id", "name"]
+        ordering = ["-exam__exam_id", "name_order"]
     
 
 """問題モデル"""
