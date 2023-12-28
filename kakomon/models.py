@@ -1,4 +1,4 @@
-from .constants import EXAMTYPE, NAVIGATION_OR_MECHANISM, GRADE, SUBJECT
+from .constants import EXAMTYPE, NAVIGATION_OR_MECHANISM, GRADE, SUBJECT, SHOMON, SUBJECT_CHOICES
 from datetime import date
 from django.db import models
 import os
@@ -28,19 +28,24 @@ class Exam(models.Model):
         return f'{self.date.year}年 {self.date.month}月 {self.get_exam_type_display()} {self.get_grade_display()} {self.get_navigation_or_mechanism_display()}'
     
     class Meta:
-        ordering = ["exam_id"]
+        ordering = ["-exam_id"]
 
 
 """科目モデル"""
 class Subject(models.Model):
     exam = models.ForeignKey(Exam, on_delete=models.CASCADE, related_name='subjects', verbose_name='試験')
     name = models.CharField(verbose_name="科目", choices=SUBJECT, max_length=10)
+    name_order = models.IntegerField(verbose_name="科目順序", choices=[(v, k) for k, v in SUBJECT_CHOICES.items()])
+
+    def save(self, *args, **kwargs):
+        self.name_order = SUBJECT_CHOICES.get(self.name, 0)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f'{self.exam.date.year}年 {self.exam.date.month}月 {self.exam.get_exam_type_display()} {self.exam.get_grade_display()} {self.exam.get_navigation_or_mechanism_display()} {self.get_name_display()}'
     
     class Meta:
-        ordering = ["exam__exam_id", "name"]
+        ordering = ["-exam__exam_id", "name_order"]
     
 
 """問題モデル"""
@@ -57,15 +62,15 @@ class Question(models.Model):
             filename
         )
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE, verbose_name='科目')
-    daimon = models.PositiveSmallIntegerField()
-    shomon = models.PositiveSmallIntegerField(null=True, blank=True)
-    edamon = models.PositiveSmallIntegerField(null=True, blank=True)
+    daimon = models.PositiveSmallIntegerField(verbose_name="大問")
+    shomon = models.IntegerField(verbose_name="小問", choices=SHOMON)
+    edamon = models.PositiveSmallIntegerField(verbose_name="枝問", null=True, blank=True)
     question_image = models.ImageField(upload_to=get_image_upload_path, null=True, blank=True)
     answer_image = models.ImageField(upload_to=get_image_upload_path, null=True, blank=True)
-    question_description = models.TextField(null=True, blank=True)
-    question = models.TextField()
-    answer_no_indent = models.BooleanField(default=False)
-    answer = models.TextField()
+    question_description = models.TextField(verbose_name="問題説明", null=True, blank=True)
+    question = models.TextField(verbose_name="問題")
+    answer_no_indent = models.BooleanField(verbose_name="解答インデント有無", default=False)
+    answer = models.TextField(verbose_name="解答")
 
     def __str__(self):
         if self.edamon:

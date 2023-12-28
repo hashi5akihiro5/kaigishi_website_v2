@@ -4,3 +4,72 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+/* ドロップダウン設定 */
+.dropdown:hover>.dropdown-menu {
+    display: block;
+}
+  
+.dropdown>.dropdown-toggle:active {
+    /*Without this, clicking will make it sticky*/
+    pointer-events: none;
+}
+
+/* 解答を表示する */
+.details {
+    line-height: 2;
+    border: 1px solid #B9F9B2;
+    width: 100%;
+    margin: 0 auto 20px;
+    &__summary {
+        position: relative;
+        display: block;
+        background: #F3FFF3;
+        cursor: pointer;
+        margin: 0;
+        padding: 10px 40px 10px 16px;
+        &::-webkit-details-marker {
+            display: none;
+      }
+      &::before {
+        display: block;
+        content: "";
+        box-sizing: border-box;
+        position: absolute;
+        top: calc(50% - 6px);
+        right: 16px;
+        width: 6px;
+        height: 6px;
+        border: 6px solid transparent;
+        border-left: 6px solid #B9F9B2;
+        transition: all 0.4s ease-out;
+        transform-origin: 3px 6px;
+        transform: rotate(90deg);
+        .details[open] & {
+          transform: rotate(-90deg);
+        }
+      }
+    }
+    &__content {
+        overflow: hidden;
+        margin: 0;
+        padding-left: 16px;
+        padding-right: 16px;
+      > * {
+        margin: 0;
+        padding-top: 16px;
+        &:last-child {
+          padding-bottom: 16px;
+        }
+      }
+    }
+}
+
+.details__summary {
+    color: #287E39;
+}
+
+.details__content {
+    color: red;
+    background-color: rgb(255, 253, 227);
+}
