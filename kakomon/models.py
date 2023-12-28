@@ -62,14 +62,15 @@ class Question(models.Model):
             filename
         )
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE, verbose_name='科目')
+    question_id = models.IntegerField(verbose_name="問題ID", default=0, null=True, blank=True)
     daimon = models.PositiveSmallIntegerField(verbose_name="大問")
     shomon = models.IntegerField(verbose_name="小問", choices=SHOMON)
     edamon = models.PositiveSmallIntegerField(verbose_name="枝問", null=True, blank=True)
-    question_image = models.ImageField(upload_to=get_image_upload_path, null=True, blank=True)
-    answer_image = models.ImageField(upload_to=get_image_upload_path, null=True, blank=True)
     question_description = models.TextField(verbose_name="問題説明", null=True, blank=True)
+    question_image = models.ImageField(verbose_name="問題画像", upload_to=get_image_upload_path, null=True, blank=True)
     question = models.TextField(verbose_name="問題")
     answer_no_indent = models.BooleanField(verbose_name="解答インデント有無", default=False)
+    answer_image = models.ImageField(verbose_name="解答画像", upload_to=get_image_upload_path, null=True, blank=True)
     answer = models.TextField(verbose_name="解答")
 
     def __str__(self):

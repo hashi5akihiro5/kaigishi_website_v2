@@ -76,10 +76,16 @@
             {% endif %}
             {% block search %}{% endblock %}
             <div class="container mb-3">
-                {% block content %}{% endblock %}
+                <div class="row">
+                    <div class="col-md-9">
+                        {% block content %}{% endblock %}
+                    </div>
+                    <div class="col-md-3 bg-light">
+                        {% block sidebar %}{% include "kakomon/base_sidebar.html" %}{% endblock %}
+                    </div>
+                </div>
             </div>
         </main>
-
         <footer class="py-2 bg-dark">
             <p class="m-0 text-center text-white">
                 Copyright &copy; kaigishi_website 12.19.2023 
