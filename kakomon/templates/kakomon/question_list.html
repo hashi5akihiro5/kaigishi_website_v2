@@ -13,11 +13,19 @@
             <!-- 大問説明あり（航海の大問４で使用） -->
             {% if question.question_description and question.daimon == 4 or question.question and question.shomon is None %}
                 <div class="d-flex">
-                    <p class="daimon"><span class="border p-1 me-1">問題</span>{{ question.daimon }}</p>
+                    <p class="daimon"><span class="border p-1 me-1">問題</span></p>
                     <p>{{ question.question_description | safe | linebreaksbr }}</p>
                 </div>
             {% else %}
                 <p class="daimon"><span class="border p-1 me-1">問題</span>{{ question.daimon }}</p>
+                <!-- 類似問題の表示 -->
+                {% for similar_questions in question.similar_questions.all %}
+                    {% if forloop.first %}
+                        <span>類似問題 :  {{ similar_questions.subject.exam.date.year }}/{{ similar_questions.subject.exam.date.month }}</span>
+                    {% else %}
+                        <span>, {{ similar_questions.subject.exam.date.year }}/{{ similar_questions.subject.exam.date.month }}</span>
+                    {% endif %}
+                {% endfor %}
             {% endif %}
         {% endifchanged %}
         <!-- 小問番号ありの場合 -->
