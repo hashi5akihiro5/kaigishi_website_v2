@@ -1,0 +1,10 @@
+{% extends "kakomon/base.html" %}
+
+{% block title %}管理画面{% endblock %}
+
+{% block base_management %}
+<h1>管理画面</h1>
+<ul>
+    <li><a href={% url 'kakomon:create_exam' %}>定期試験 登録</a></li>
+</ul>
+{% endblock %}

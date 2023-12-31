@@ -1,15 +1,24 @@
-from django.views.generic import TemplateView, ListView
-from .models import Exam, Subject, Question
+from django.views.generic import TemplateView, ListView, CreateView
+from django.urls import reverse_lazy
 from .constants import EXAMTYPE, NAVIGATION_OR_MECHANISM, GRADE, SUBJECT
 from .functions import find_key_for_value, get_exam_id
+from .forms import ExamForm
+from .models import Exam, Subject, Question
 
-
+"""Top画面"""
 class IndexView(TemplateView):
     template_name = 'kakomon/index.html'
 
+
+"""管理メニュー"""
+class ManagementView(TemplateView):
+    template_name = 'kakomon/management.html'
+
+
+
 """ 試験画面 """
 class ExamListView(ListView):
-    template_name = 'kakomon/exam_list.html'
+    template_name = 'kakomon/list_exam.html'
     model = Exam
     context_object_name = 'exams'
 
@@ -37,7 +46,7 @@ class ExamListView(ListView):
 
 """ 科目画面 """
 class SubjectListView(ListView):
-    template_name = 'kakomon/subject_list.html'
+    template_name = 'kakomon/list_subject.html'
     model = Subject
     context_object_name = 'subjects'
 
@@ -63,7 +72,7 @@ class SubjectListView(ListView):
 
 """ 問題画面 """
 class QuestionListView(ListView):
-    template_name = 'kakomon/question_list.html'
+    template_name = 'kakomon/list_question.html'
     model = Question
     context_object_name = 'questions'
 
@@ -93,4 +102,14 @@ class QuestionListView(ListView):
         context['year'] = self.year
         context['month'] = self.month
         return context
-    
+
+
+"""試験登録"""
+class ExamCreateView(CreateView):
+    model = Exam
+    form_class = ExamForm
+    template_name = 'kakomon/create_exam.html'
+    success_url = reverse_lazy('kakomon:management')
+
+    def test_func(self):
+        return self.request.user.is_contribute

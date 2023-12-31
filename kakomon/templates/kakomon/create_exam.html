@@ -1,0 +1,38 @@
+{% extends "kakomon/base.html" %}
+{% load widget_tweaks %}
+
+{% block title %}定期試験 登録{% endblock %}
+
+{% block base_management %}
+    {% if user.is_contribute %}
+        <h2 class="mb-4">定期試験 登録</h2>
+        <form method="post" class="row g-3" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="col-mb-4">
+                <label for="id_title">試験ID</label>
+                {% render_field form.exam_id class+="form-control" %}
+            </div>
+            <div class="col-mb-4">
+                <label for="id_title">定期日</label>
+                {% render_field form.date class+="form-control" %}
+            </div>
+            <div class="col-mb-4">
+                <label for="id_title">筆記・口述</label>
+                {% render_field form.exam_type class+="form-control" %}
+            </div>
+            <div class="col-mb-4">
+                <label for="id_title">級名</label>
+                {% render_field form.grade class+="form-control" %}
+            </div>
+            <div class="col-mb-4">
+                <label for="id_title">航海・筆記</label>
+                {% render_field form.navigation_or_mechanism class+="form-control" %}
+            </div>
+            <div class="row d-grid gap-2 mx-auto">
+                <button type="submit" class="btn btn-primary btn-lg">登録</button>
+            </div>
+        </form>
+    {% else %}
+        <p>このページへのアクセス権限がありません。</p>
+    {% endif %}
+{% endblock%}
