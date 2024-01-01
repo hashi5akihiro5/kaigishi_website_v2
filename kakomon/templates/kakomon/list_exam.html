@@ -11,7 +11,7 @@
             <h3>{{ exam.date.year }}年度</h3>
         </div>
         {% endifchanged %}
-        <a type="button" class="px-4 btn btn-outline-primary" href={% url 'kakomon:subject_list' exam.get_exam_type_display exam.get_navigation_or_mechanism_display exam.get_grade_display exam.date.year exam.date.month %}>
+        <a type="button" class="px-4 btn btn-outline-primary" href={% url 'kakomon:list_subject' exam.get_exam_type_display exam.get_navigation_or_mechanism_display exam.get_grade_display exam.date.year exam.date.month %}>
             {{ exam.date.month }} 月度
         </a>
     {% endfor %}

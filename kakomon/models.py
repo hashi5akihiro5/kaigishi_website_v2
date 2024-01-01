@@ -22,6 +22,9 @@ class Exam(models.Model):
     exam_type = models.CharField(verbose_name="筆記・口述", choices=EXAMTYPE, max_length=8)
     grade = models.CharField(verbose_name="級名", choices=GRADE, max_length=6)
     navigation_or_mechanism = models.CharField(verbose_name="航海・機関", choices=NAVIGATION_OR_MECHANISM, max_length=10)
+
+    def __str__(self):
+        return f'{self.date.year}年 {self.date.month}月 {self.get_exam_type_display()} {self.get_grade_display()} {self.get_navigation_or_mechanism_display()}'
     
     class Meta:
         ordering = ["-exam_id"]
@@ -48,6 +51,9 @@ class Subject(models.Model):
     def save(self, *args, **kwargs):
         self.name_order = SUBJECT_CHOICES.get(self.name, 0)
         super().save(*args, **kwargs)
+    
+    def __str__(self):
+        return f'{self.exam.date.year}年 {self.exam.date.month}月 {self.exam.get_exam_type_display()} {self.exam.get_grade_display()} {self.exam.get_navigation_or_mechanism_display()} {self.get_name_display()}'
     
     class Meta:
         ordering = ["-exam__exam_id", "name_order"]
@@ -79,6 +85,12 @@ class Question(models.Model):
     answer_no_indent = models.BooleanField(verbose_name="解答インデント有無", default=False)
     answer_image = models.ImageField(verbose_name="解答画像", upload_to=get_image_upload_path, null=True, blank=True)
     answer = models.TextField(verbose_name="解答")
+
+    def __str__(self):
+        if self.edamon:
+            return f'{self.subject.exam.date.year}年 {self.subject.exam.date.month}月 {self.subject.exam.get_exam_type_display()} {self.subject.exam.get_grade_display()} {self.subject.exam.get_navigation_or_mechanism_display()} {self.subject.get_name_display()}_大問{self.daimon}_小問{self.shomon}_枝問{self.edamon}'
+        else:
+            return f'{self.subject.exam.date.year}年 {self.subject.exam.date.month}月 {self.subject.exam.get_exam_type_display()} {self.subject.exam.get_grade_display()} {self.subject.exam.get_navigation_or_mechanism_display()} {self.subject.get_name_display()}_大問{self.daimon}_小問{self.shomon}'
     
     class Meta:
         ordering = ["subject", "daimon", "shomon", "edamon"]

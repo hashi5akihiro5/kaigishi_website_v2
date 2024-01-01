@@ -2,7 +2,7 @@ from django.views.generic import TemplateView, ListView, CreateView
 from django.urls import reverse_lazy
 from .constants import EXAMTYPE, NAVIGATION_OR_MECHANISM, GRADE, SUBJECT
 from .functions import find_key_for_value, get_exam_id
-from .forms import ExamForm
+from .forms import ExamForm, SubjectForm, QuestionForm
 from .models import Exam, Subject, Question
 
 """Top画面"""
@@ -109,6 +109,28 @@ class ExamCreateView(CreateView):
     model = Exam
     form_class = ExamForm
     template_name = 'kakomon/create_exam.html'
+    success_url = reverse_lazy('kakomon:management')
+
+    def test_func(self):
+        return self.request.user.is_contribute
+
+
+"""科目登録"""
+class SubjectCreateView(CreateView):
+    model = Subject
+    form_class = SubjectForm
+    template_name = 'kakomon/create_subject.html'
+    success_url = reverse_lazy('kakomon:management')
+
+    def test_func(self):
+        return self.request.user.is_contribute
+
+
+"""質問登録"""
+class QuestionCreateView(CreateView):
+    model = Question
+    form_class = QuestionForm
+    template_name = 'kakomon/create_question.html'
     success_url = reverse_lazy('kakomon:management')
 
     def test_func(self):

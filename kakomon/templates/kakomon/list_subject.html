@@ -11,7 +11,7 @@
             <div class="d-flex justify-content-center">
         {% endifchanged %}
         <div class="col-3 d-flex justify-content-center align-items-center flex-column">
-            <a type="button" class="px-4 btn btn-outline-primary" href={% url 'kakomon:question_list' subject.exam.get_exam_type_display subject.exam.get_navigation_or_mechanism_display subject.exam.get_grade_display subject.exam.date.year subject.exam.date.month subject.get_name_display %}>{{ subject.get_name_display }}</a>
+            <a type="button" class="px-4 btn btn-outline-primary" href={% url 'kakomon:list_question' subject.exam.get_exam_type_display subject.exam.get_navigation_or_mechanism_display subject.exam.get_grade_display subject.exam.date.year subject.exam.date.month subject.get_name_display %}>{{ subject.get_name_display }}</a>
         </div>
     {% endfor %}
         </div>
