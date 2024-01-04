@@ -4,9 +4,16 @@
 
 {% block base_management %}
 <h1>管理画面</h1>
+<h2>登録</h2>
 <ul>
     <li><a href={% url 'kakomon:create_exam' %}>定期試験 登録</a></li>
     <li><a href={% url 'kakomon:create_subject' %}> 科 目  登録</a></li>
     <li><a href={% url 'kakomon:create_question' %}> 問 題  登録</a></li>
+</ul>
+<h2>編集</h2>
+<ul>
+    <li><a href={% url 'kakomon:edit_exam_list' %}>定期試験 編集</a></li>
+    <li><a href={% url 'kakomon:edit_subject_list' %}> 科 目  編集</a></li>
+    <li><a href={% url 'kakomon:edit_question_list' %}> 問 題  編集</a></li>
 </ul>
 {% endblock %}

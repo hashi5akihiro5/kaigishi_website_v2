@@ -1,0 +1,22 @@
+{% extends 'kakomon/base.html' %}
+
+{% block title %}定期試験 編集{% endblock %}
+
+{% block base_management %}
+    <h2 class="mb-4">定期試験 編集</h2>
+    {% for exam in exams %}
+        {% ifchanged %}
+        <div class="title">
+            <h2>{{ exam.get_exam_type_display }}試験  {{ exam.get_navigation_or_mechanism_display }}  {{ exam.get_grade_display }}</h2>
+        </div>
+        {% endifchanged %}
+        {% ifchanged %}
+        <div class="subtitle mb-2">
+            <h3>{{ exam.date.year }}年度</h3>
+        </div>
+        {% endifchanged %}
+        <a type="button" class="px-4 btn btn-outline-primary" href={% url 'kakomon:edit_exam' exam.pk %}>
+            {{ exam.date.month }} 月度
+        </a>
+    {% endfor %}
+{% endblock %}
