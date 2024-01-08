@@ -1,0 +1,38 @@
+{% extends "kakomon/base.html" %}
+{% load widget_tweaks %}
+
+{% block title %}ユーザー情報変更{% endblock %}
+
+{% block base_page %}
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="card card-profile my-5 mx-auto">
+        <div class="card-body">
+            <h5 class="card-title text-center">ユーザー情報変更</h5>
+            <table class="profile_table mb-4">
+                <tbody>
+                    <tr>
+                        <th class="header">ユーザー名</th>
+                        <td class="data">{% render_field form.username class+="form-control" %}</td>
+                    </tr>
+                    <tr>
+                        <th class="header">名字</th>
+                        <td class="data">{% render_field form.last_name class+="form-control" %}</td>
+                    </tr>
+                    <tr>
+                        <th class="header">名前</th>
+                        <td class="data">{% render_field form.first_name class+="form-control" %}</td>
+                    </tr>
+                    <tr>
+                        <th class="header">メールアドレス</th>
+                        <td class="data">{% render_field form.email class+="form-control" %}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="d-grid gap-2 col-6 mx-auto mb-4">
+                <button type="submit" class="btn btn-outline-warning">保存</button>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}

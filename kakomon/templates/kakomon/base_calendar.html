@@ -1,0 +1,23 @@
+{% block calendar %}
+<div class="wrapper">
+    <header>
+        <div class="icons">
+            <span id="prev" class="material-symbols-outlined">chevron_left</span>
+            <p class="current-date"></p>
+            <span id="next" class="material-symbols-outlined">chevron_right</span>
+        </div>
+    </header>
+    <div class="calendar">
+        <ul class="weeks">
+            <li class="sunday">Sun</li>
+            <li>Mon</li>
+            <li>Tue</li>
+            <li>Web</li>
+            <li>The</li>
+            <li>Fri</li>
+            <li class="saturday">Sat</li>
+        </ul>
+        <ul class="days"></ul>
+    </div>
+</div>
+{% endblock %}

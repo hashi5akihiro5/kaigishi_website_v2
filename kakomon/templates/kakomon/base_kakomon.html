@@ -1,0 +1,11 @@
+{% extends "kakomon/base.html" %}
+{% block base_page %}
+    <div class="row">
+        <div class="col-md-9">
+            {% block content %}{% endblock %}
+        </div>
+        <div class="col-md-3 bg-light">
+            {% block sidebar %}{% include "kakomon/base_sidebar.html" %}{% endblock %}
+        </div>
+    </div>
+{% endblock %}
