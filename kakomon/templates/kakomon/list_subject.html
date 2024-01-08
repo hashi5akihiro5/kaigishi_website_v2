@@ -1,18 +1,16 @@
 {% extends 'kakomon/base_kakomon.html' %}
 {% block content %}
-    {% for subject in subjects %}
-        {% ifchanged %}
-            <div class="title">
-                <h2>{{ subject.exam.get_exam_type_display }}試験  {{ subject.exam.get_navigation_or_mechanism_display }}  {{ subject.exam.get_grade_display }}</h2>
+    <div class="title">
+        <h2>{{ exam_type }}試験  {{ navigation_or_mechanism }}  {{ grade }}</h2>
+    </div>
+    <div class="subtitle mb-3">
+        <h3>{{ year }}年度 {{ month }}月</h3>
+    </div>
+    <div class="d-flex justify-content-center">
+        {% for subject in subjects %}
+            <div class="col-3 d-flex justify-content-center align-items-center flex-column">
+                <a type="button" class="px-4 btn btn-outline-primary" href={% url 'kakomon:list_question' subject.exam.get_exam_type_display subject.exam.get_navigation_or_mechanism_display subject.exam.get_grade_display subject.exam.date.year subject.exam.date.month subject.get_name_display %}>{{ subject.get_name_display }}</a>
             </div>
-            <div class="subtitle mb-2">
-                <h3>{{ subject.exam.date.year }}年度 {{ subject.exam.date.month }}月</h3>
-            </div>
-            <div class="d-flex justify-content-center">
-        {% endifchanged %}
-        <div class="col-3 d-flex justify-content-center align-items-center flex-column">
-            <a type="button" class="px-4 btn btn-outline-primary" href={% url 'kakomon:list_question' subject.exam.get_exam_type_display subject.exam.get_navigation_or_mechanism_display subject.exam.get_grade_display subject.exam.date.year subject.exam.date.month subject.get_name_display %}>{{ subject.get_name_display }}</a>
-        </div>
-    {% endfor %}
-        </div>
+        {% endfor %}
+    </div>
 {% endblock %}

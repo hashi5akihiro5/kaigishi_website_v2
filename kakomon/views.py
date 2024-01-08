@@ -34,6 +34,15 @@ class ExamListView(ListView):
         queryset = queryset.order_by('-date')
         return queryset
     
+    def get_context_data(self):
+        context = super().get_context_data()
+        context.update({
+            'exam_type': self.kwargs.get('exam_type'),
+            'navigation_or_mechanism': self.kwargs.get('navigation_or_mechanism'),
+            'grade': self.kwargs.get('grade')
+        })
+        return context
+    
 
 """ 科目画面 """
 class SubjectListView(ListView):
@@ -59,6 +68,17 @@ class SubjectListView(ListView):
             exam__exam_id = self.exam_id
         )
         return queryset
+    
+    def get_context_data(self):
+        context = super().get_context_data()
+        context.update({
+            'exam_type': self.kwargs.get('exam_type'),
+            'navigation_or_mechanism': self.kwargs.get('navigation_or_mechanism'),
+            'grade': self.kwargs.get('grade'),
+            'year': self.kwargs.get('year'),
+            'month': self.kwargs.get('month'),
+        })
+        return context
 
 
 """ 問題画面 """

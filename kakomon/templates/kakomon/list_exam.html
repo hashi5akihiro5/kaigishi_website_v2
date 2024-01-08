@@ -1,18 +1,19 @@
 {% extends 'kakomon/base_kakomon.html' %}
 {% block content %}
-    {% for exam in exams %}
-        {% ifchanged %}
-        <div class="title">
-            <h2>{{ exam.get_exam_type_display }}試験  {{ exam.get_navigation_or_mechanism_display }}  {{ exam.get_grade_display }}</h2>
-        </div>
-        {% endifchanged %}
-        {% ifchanged %}
+    <div class="title">
+        <h2>{{ exam_type }}試験  {{ navigation_or_mechanism }}  {{ grade }}</h2>
+    </div>
+    {% regroup exams by date.year as date_groups %}
+    {% for date_group in date_groups %}
         <div class="subtitle mb-2">
-            <h3>{{ exam.date.year }}年度</h3>
+            <h3>{{ date_group.grouper }}年度</h3>
         </div>
-        {% endifchanged %}
-        <a type="button" class="px-4 btn btn-outline-primary" href={% url 'kakomon:list_subject' exam.get_exam_type_display exam.get_navigation_or_mechanism_display exam.get_grade_display exam.date.year exam.date.month %}>
-            {{ exam.date.month }} 月度
-        </a>
+        <div class="month-section mb-3">
+            {% for exam in date_group.list %}
+                <a type="button" class="px-4 btn btn-outline-primary" href={% url 'kakomon:list_subject' exam.get_exam_type_display exam.get_navigation_or_mechanism_display exam.get_grade_display exam.date.year exam.date.month %}>
+                    {{ exam.date.month }} 月度
+                </a>
+            {% endfor %}
+        </div>
     {% endfor %}
 {% endblock %}
