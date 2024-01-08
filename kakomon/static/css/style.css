@@ -73,3 +73,44 @@
     color: red;
     background-color: rgb(255, 253, 227);
 }
+
+
+/* profile */
+.card-profile {
+  width: 700px;
+  border: 0;
+  border-radius: irem;
+  box-shadow: 0 0.2rem 0.2rem 0 rgba(0, 0, 0, 0.1);
+}
+
+.button {
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn {
+  font-size: 90%;
+  border-radius: 5rem;
+  font-weight: bold;
+  white-space: nowrap;  /* ボタンのテキストを折り返さないようにする */
+}
+
+.profile_table {
+  width: 100%;
+  border: 1px solid #d1dbeb;
+  border-radius: 8px;
+  border-collapse: separate;
+  overflow: hidden;
+}
+
+.profile_table .header {
+  width: 200px;
+  padding: 16px 24px;
+  text-align: left;
+  background: #f1f5fa;
+}
+
+.profile_table .data {
+  padding: 16px 24px;
+}

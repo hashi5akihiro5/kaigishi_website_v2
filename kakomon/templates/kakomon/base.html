@@ -17,7 +17,11 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="ナビゲーションの切替"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="#">マイページ</a></li>
+                        {% if user.is_authenticated %}
+                            <li class="nav-item"><a class="nav-link" href={% url 'accounts:profile' user.id %}>マイページ</a></li>
+                        {% else %}
+                            <li class="nav-item"><a class="nav-link" href={% url 'accounts:login' %}>ログイン</a></li>
+                        {% endif %}
                         <li class="nav-item"><a class="nav-link" href="#">お問合せ</a></li>
                     </ul>
                 </div>
@@ -75,8 +79,7 @@
                 </div>
             {% endif %}
             <div class="container mb-3">
-                {% block base_kakomon %}{% endblock%}
-                {% block base_management %}{% endblock %}
+                {% block base_page %}{% endblock %}
             </div>
         </main>
         <footer class="py-2 bg-dark">

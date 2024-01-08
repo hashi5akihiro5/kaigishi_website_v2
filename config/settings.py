@@ -118,5 +118,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media_local')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+LOGIN_URL = "/" # 追加
+LOGIN_REDIRECT_URL = "kakomon:index" # 追加
+
 # カスタムユーザー
 AUTH_USER_MODEL = 'accounts.CustomUser'

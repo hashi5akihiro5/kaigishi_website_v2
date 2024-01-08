@@ -1,0 +1,22 @@
+{% extends "kakomon/base.html" %} 
+
+{% block title %}ログイン{% endblock %}
+
+{% block base_page %}
+<div class="container">
+    <h1 class="title">ログイン</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        {% for field in form %}
+            {{ field.label }}
+            <br>
+            <div class="col-7 col-sm-5">{{ field }}</div>
+            <br>
+            {{ field.error }}
+        {% endfor %}
+        <br>
+        <button class="btn btn-outline-primary" type="submit">ログイン</button>
+    </form>
+</div>
+{% endblock %}
