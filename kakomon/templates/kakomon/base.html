@@ -12,58 +12,54 @@
         <title>{% block title %}{% endblock %}</title>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <div class="container">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary navbar-dark bg-primary">
+            <div class="container-fluid">
                 <a class="navbar-brand" href={% url 'kakomon:index' %}>海技士サイト</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="ナビゲーションの切替"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                筆記試験  航 海
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href={% url 'kakomon:list_exam' "筆記" "航海" "1級" %}>航 海  1級</a></li>
+                                <li><a class="dropdown-item" href={% url 'kakomon:list_exam' "筆記" "航海" "2級" %}>航 海  2級</a></li>
+                                <li><a class="dropdown-item" href={% url 'kakomon:list_exam' "筆記" "航海" "3級" %}>航 海  3級</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                筆記試験  機 関
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">機 関  1級</a></li>
+                                <li><a class="dropdown-item" href="#">機 関  2級</a></li>
+                                <li><a class="dropdown-item" href="#">機 関  3級</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                口述試験  航 海
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">作成中</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown me-5">
+                            <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                口述試験  機 関
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">作成中</a></li>
+                            </ul>
+                        </li>
                         {% if user.is_authenticated %}
                             <li class="nav-item"><a class="nav-link" href={% url 'accounts:profile' user.id %}>マイページ</a></li>
                         {% else %}
                             <li class="nav-item"><a class="nav-link" href={% url 'accounts:login' %}>ログイン</a></li>
                         {% endif %}
                         <li class="nav-item"><a class="nav-link" href="#">お問合せ</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <nav class="navbar navbar-expand-lg justify-content-center mb-3">
-            <div class="d-flex">
-                <div class="dropdown me-3">
-                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false">
-                        筆記試験  航 海
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <li><a class="dropdown-item" href={% url 'kakomon:list_exam' "筆記" "航海" "1級" %}>航 海  1級</a></li>
-                        <li><a class="dropdown-item" href={% url 'kakomon:list_exam' "筆記" "航海" "2級" %}>航 海  2級</a></li>
-                        <li><a class="dropdown-item" href={% url 'kakomon:list_exam' "筆記" "航海" "3級" %}>航 海  3級</a></li>
-                    </ul>
-                </div>
-                <div class="dropdown me-3">
-                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false">
-                        筆記試験  機 関
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <li><a class="dropdown-item" href="#">機 関  1級</a></li>
-                        <li><a class="dropdown-item" href="#">機 関  2級</a></li>
-                        <li><a class="dropdown-item" href="#">機 関  3級</a></li>
-                    </ul>
-                </div>
-                <div class="dropdown me-3">
-                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false">
-                        口述試験  航 海
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <li><a class="dropdown-item" href="#">作成中</a></li>
-                    </ul>
-                </div>
-                <div class="dropdown">
-                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false">
-                        口述試験  機 関
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <li><a class="dropdown-item" href="#">作成中</a></li>
                     </ul>
                 </div>
             </div>
