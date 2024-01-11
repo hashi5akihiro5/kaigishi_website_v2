@@ -1,8 +1,8 @@
 from django.contrib import messages
-from django.contrib.auth import get_user_model
-from django.views.generic import TemplateView, UpdateView
+from django.contrib.auth import get_user_model, authenticate
+from django.views.generic import TemplateView, FormView, UpdateView
 from django.contrib.auth.views import LoginView
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from . import forms
 
 User = get_user_model()
@@ -11,6 +11,30 @@ User = get_user_model()
 class CustomLoginView(LoginView):
     authentication_form = forms.CustomAuthenticationForm
     template_name = 'accounts/login.html'
+
+
+"""サインアップページ"""
+class SignupView(FormView):
+    form_class = forms.CustomUserCreationForm
+    template_name = 'accounts/signup.html'
+    success_url = reverse_lazy('accounts:login')
+
+    def get_context_data(self, **kwargs):
+        context =  super().get_context_data(**kwargs)
+        return context
+
+    def form_valid(self, form):
+        # ユーザーを保存
+        user = form.save(commit=False)
+        user.save()
+
+        # 認証
+        user = authenticate(
+            username = user.email,
+            password = form.cleaned_data['password1'],
+        )
+        return super().form_valid(form)
+
 
 """ユーザー情報ページ"""
 class ProfileView(TemplateView):

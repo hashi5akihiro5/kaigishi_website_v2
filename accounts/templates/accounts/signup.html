@@ -1,0 +1,14 @@
+{% extends "kakomon/base.html" %} 
+
+{% block title %}アカウント作成{% endblock %}
+
+{% block base_page %}
+<div class="container">
+    <h1 class="my-5">アカウント作成</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-outline-primary" name="next" value="regist" type="submit">登録</button>
+    </form>
+</div>
+{% endblock %}
