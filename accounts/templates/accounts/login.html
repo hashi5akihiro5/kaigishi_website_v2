@@ -16,7 +16,8 @@
             {{ field.error }}
         {% endfor %}
         <br>
-        <button class="btn btn-outline-primary" type="submit">ログイン</button>
+        <button class="btn btn-outline-primary mb-3" type="submit">ログイン</button>
+        <div><a href="{% url 'accounts:signup' %}" type="submit">アカウント作成</a></div>
     </form>
 </div>
 {% endblock %}
