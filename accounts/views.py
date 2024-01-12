@@ -71,3 +71,19 @@ class UserChangeView(UpdateView):
         form.save()
         self.get_success_message(form)
         return super().form_valid(form)
+
+
+"""お問合せ画面"""
+class ContactFormView(FormView):
+    template_name = "accounts/contact.html"
+    form_class = forms.ContactForm
+    success_url = reverse_lazy("accounts:contact_result")
+
+    
+    def form_valid(self, form):
+        form.send_email()
+        return super().form_valid(form)
+
+
+class ContactResultView(TemplateView):
+    template_name = "accounts/contact_result.html"

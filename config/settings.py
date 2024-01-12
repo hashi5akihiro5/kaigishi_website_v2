@@ -123,3 +123,6 @@ LOGIN_REDIRECT_URL = "kakomon:index" # 追加
 
 # カスタムユーザー
 AUTH_USER_MODEL = 'accounts.CustomUser'
+
+# お問合せ送信先
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
