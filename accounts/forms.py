@@ -137,6 +137,13 @@ class ContactForm(forms.Form):
         )
     )
 
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None)
+        super(ContactForm, self).__init__(*args, **kwargs)
+        if user and isinstance(user, CustomUser):
+            self.fields['name'].initial = user.username
+            self.fields['email'].initial = user.email
+
     def send_email(self):
         name = self.cleaned_data['name']
         email = self.cleaned_data['email']

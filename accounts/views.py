@@ -79,6 +79,10 @@ class ContactFormView(FormView):
     form_class = forms.ContactForm
     success_url = reverse_lazy("accounts:contact_result")
 
+    def get_form_kwargs(self):
+        kwargs = super(ContactFormView, self).get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
     
     def form_valid(self, form):
         form.send_email()
