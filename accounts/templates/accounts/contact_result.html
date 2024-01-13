@@ -1,0 +1,14 @@
+{% extends "kakomon/base.html" %}
+
+
+{% block title %}お問合せ完了{% endblock %}
+
+{% block base_page %}
+<div class="card card-profile my-5 mx-auto">
+    <div class="card-body">
+        <h4 class="card-title text-center mb-5">お問合せ完了</h4>
+        <p>メールが送信されました。ありがとうございます。</p>
+        <a href="{% url 'kakomon:index' %}" class="btn btn-outline-primary mt-5">ホームに戻る</a>
+    </div>
+</div>
+{% endblock %}

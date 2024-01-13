@@ -3,9 +3,11 @@ from .constants import EXAMTYPE, NAVIGATION_OR_MECHANISM, GRADE, SUBJECT
 from .functions import find_key_for_value, get_exam_id
 from .models import Exam, Subject, Question
 
+
 """ Top画面 """
 class IndexView(TemplateView):
     template_name = 'kakomon/index.html'
+
 
 """ 定期試験画面 """
 class ExamListView(ListView):

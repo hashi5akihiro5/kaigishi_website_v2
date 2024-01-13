@@ -1,5 +1,8 @@
+from django import forms
 from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.core.mail import BadHeaderError, send_mail
+from django.http import HttpResponse
 from django.forms import ModelForm, EmailField, EmailInput
 from .models import CustomUser
 
@@ -88,3 +91,67 @@ class UserChangeForm(ModelForm):
         if commit:
             self.instance.save()
         return self.instance
+
+
+class ContactForm(forms.Form):
+    name = forms.CharField(
+        label="お名前",
+        max_length=50,
+        widget=forms.TextInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "お名前",
+            }
+        )
+    )
+
+    email = forms.EmailField(
+        label="メールアドレス",
+        max_length=100,
+        widget=forms.TextInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "メールアドレス",
+            }
+        )
+    )
+
+    subject = forms.CharField(
+        label="件名",
+        max_length=100,
+        widget=forms.TextInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "件名",
+            }
+        )
+    )
+
+    message = forms.CharField(
+        label="お問合わせ内容",
+        widget=forms.Textarea(
+            attrs={
+                "class": "form-control",
+                "placeholder": "お問合わせ内容",
+            }
+        )
+    )
+
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None)
+        super(ContactForm, self).__init__(*args, **kwargs)
+        if user and isinstance(user, CustomUser):
+            self.fields['name'].initial = user.username
+            self.fields['email'].initial = user.email
+
+    def send_email(self):
+        name = self.cleaned_data['name']
+        email = self.cleaned_data['email']
+        from_email = '{name} <{email}>'.format(name=name, email=email)
+        subject = self.cleaned_data["subject"]
+        message = self.cleaned_data["message"]
+        recipient_list = ["admin@admin.com"] ## 送信元
+        try:
+            send_mail(subject, message, from_email, recipient_list)
+        except BadHeaderError:
+            return HttpResponse("無効なヘッダが検出されました。")
