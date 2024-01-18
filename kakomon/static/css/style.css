@@ -5,6 +5,15 @@
     box-sizing: border-box;
 }
 
+/* 最初の１行のスペース */
+p {
+  text-indent: 15px;
+}
+/* 最初の１行のスペースなし */
+p.no-indent {
+  text-indent: 0;
+}
+
 /* ドロップダウン設定 */
 .dropdown:hover>.dropdown-menu {
     display: block;

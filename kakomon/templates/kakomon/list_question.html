@@ -1,12 +1,10 @@
 {% extends 'kakomon/base_kakomon.html' %}
 {% block content %}
+    <div class="title">
+        <h2>{{ exam_type }}試験  {{ navigation_or_mechanism }}  {{ grade }}</h2>
+        <h3>{{ year }}年 {{ month }}月 {{ subject }}</h3>
+    </div>
     {% for question in questions %}
-        {% ifchanged %}
-            <div class="title">
-                <h2>{{ question.subject.exam.get_exam_type_display }}試験  {{ question.subject.exam.get_navigation_or_mechanism_display }}  {{ question.subject.exam.get_grade_display }}</h2>
-                <h3>{{ year }}年 {{ month }}月 {{ question.subject.get_name_display }}</h3>
-            </div>
-        {% endifchanged %}
         <!-- 問題 section -->
         <!-- 大問番号 -->
         {% ifchanged question.daimon %}
@@ -17,7 +15,7 @@
                     <p>{{ question.question_description | safe | linebreaksbr }}</p>
                 </div>
             {% else %}
-                <p class="daimon"><span class="border p-1 me-1">問題</span>{{ question.daimon }}</p>
+                <p class="daimon"><span class="border p-1 me-2">問題</span>{{ question.daimon }}</p>
                 <!-- 類似問題の表示 -->
                 {% for similar_questions in question.similar_questions.all %}
                     {% if forloop.first %}
@@ -58,7 +56,7 @@
                 <!-- 問題文 -->
                 <!-- 画像がある場合 -->
                 {% if question.question_image %}
-                    <p class="col-7 me-3">{{ question.question | safe | linebreaksbr }}</p>
+                    <p class="col-7">{{ question.question | safe | linebreaksbr }}</p>
                     <div class="question-image-2">
                         <img src="{{ question.question_image.url }}" alt="Question Image"> 
                     </div>
