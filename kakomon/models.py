@@ -82,7 +82,7 @@ class Question(models.Model):
     question_description = models.TextField(verbose_name="問題説明", null=True, blank=True)
     question_image = models.ImageField(verbose_name="問題画像", upload_to=get_image_upload_path, null=True, blank=True)
     question = models.TextField(verbose_name="問題")
-    answer_no_indent = models.BooleanField(verbose_name="解答インデント有無", default=False)
+    answer_no_indent = models.BooleanField(verbose_name="解答インデント無", default=False)
     answer_image = models.ImageField(verbose_name="解答画像", upload_to=get_image_upload_path, null=True, blank=True)
     answer = models.TextField(verbose_name="解答")
 

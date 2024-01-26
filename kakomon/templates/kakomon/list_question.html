@@ -11,7 +11,7 @@
             <!-- 大問説明あり（航海の大問４で使用） -->
             {% if question.question_description and question.daimon == 4 or question.question and question.shomon is None %}
                 <div class="d-flex">
-                    <p class="daimon"><span class="border p-1 me-1">問題</span></p>
+                    <p class="daimon"><span class="border p-1 me-2">問題</span>{{ question.daimon }}</p>
                     <p>{{ question.question_description | safe | linebreaksbr }}</p>
                 </div>
             {% else %}
@@ -40,9 +40,7 @@
                 </div>
                 {% endif %}
                 {% if question.question_description and question.question_image %}
-                    <div class="question-image-1">
-                        <img src="{{ question.question_image.url }}" alt="Question Image"> 
-                    </div>
+                    <img src="{{ question.question_image.url }}" class="question-img mx-auto d-block" alt="Question Image"> 
                 {% endif %}
             {% endifchanged %}
             <!-- 枝問あり -->

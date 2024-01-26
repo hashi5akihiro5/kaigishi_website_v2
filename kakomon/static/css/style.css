@@ -24,6 +24,15 @@ p.no-indent {
     pointer-events: none;
 }
 
+/* 大問 */
+.daimon {
+  white-space: nowrap;
+}
+
+.question-img {
+  max-width: 300px;
+}
+
 /* 解答を表示する */
 .details {
     line-height: 2;
