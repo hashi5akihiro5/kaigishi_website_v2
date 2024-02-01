@@ -112,6 +112,12 @@ class QuestionListView(ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['year'] = self.year
-        context['month'] = self.month
+        context.update({
+            'exam_type': self.kwargs.get('exam_type'),
+            'navigation_or_mechanism': self.kwargs.get('navigation_or_mechanism'),
+            'grade': self.kwargs.get('grade'),
+            'year': self.kwargs.get('year'),
+            'month': self.kwargs.get('month'),
+            'subject': self.kwargs.get('subject')
+        })
         return context
