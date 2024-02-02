@@ -1,3 +1,4 @@
 myenv
 db.sqlite3
 media_local
+.local.py

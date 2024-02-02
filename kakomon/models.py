@@ -38,8 +38,8 @@ class Subject(models.Model):
             str(instance.exam.get_exam_type_display()),
             str(instance.exam.get_navigation_or_mechanism_display()),
             str(instance.exam.get_grade_display()),
-            str(instance.exam.date.year),
-            str(instance.exam.date.month),
+            f'{str(instance.exam.date.year)}年',
+            f'{str(instance.exam.date.month)}月',
             str(instance.get_name_display()),
             filename
         )
