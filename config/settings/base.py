@@ -1,3 +1,4 @@
+from .settings_secret import *
 from pathlib import Path
 import os
 
@@ -29,6 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'widget_tweaks',
     'kakomon',
+    'storages'
 ]
 
 MIDDLEWARE = [
@@ -126,3 +128,8 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 
 # お問合せ送信先
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+# AWS設定
+AWS_STORAGE_BUCKET_NAME = 'kaigishisaito'
+DEFAULT_FILE_STORAGE = "storages.backends.s3.S3Storage"

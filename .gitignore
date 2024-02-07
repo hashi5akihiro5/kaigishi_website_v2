@@ -1,4 +1,5 @@
 myenv
 db.sqlite3
 media_local
-.local.py
+config/settings/local.py
+config/settings/settings_secret.py
