@@ -1,4 +1,9 @@
 myenv
 db.sqlite3
-media_local
-.local.py
+.env
+config/settings/local.py
+
+config/media/*
+!/media/.gitkeep
+config/static/*
+!/static/.gitkeep

@@ -1,0 +1,1 @@
+web: gunicorn kaigishi_website_v2.wsgi
