@@ -1,5 +1,9 @@
 myenv
 db.sqlite3
-media_local
+.env
 config/settings/local.py
-config/settings/settings_secret.py
+
+config/media/*
+!/media/.gitkeep
+config/static/*
+!/static/.gitkeep
