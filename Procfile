@@ -1,1 +1,1 @@
-web: gunicorn kaigishi_website_v2.wsgi
+web: gunicorn config.wsgi
