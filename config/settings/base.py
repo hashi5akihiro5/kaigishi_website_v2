@@ -16,7 +16,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['kaigishisaito-7a7039367abc.herokuapp.com']
+ALLOWED_HOSTS = ['kaigishiwebsite-bdb346898249.herokuapp.com']
 
 
 # Application definition
@@ -136,5 +136,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # AWS設定
 AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = 'kaigishisaito'
+AWS_STORAGE_BUCKET_NAME = 'kaigishiwebsite'
 DEFAULT_FILE_STORAGE = "storages.backends.s3.S3Storage"
