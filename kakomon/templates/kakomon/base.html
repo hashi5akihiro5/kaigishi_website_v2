@@ -56,8 +56,8 @@
                     </ul>
                 </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="ナビゲーションの切替"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse justify-content-end" >
-                    <ul class="navbar-nav" id="navbarNav">
+                <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarNav">
+                    <ul class="navbar-nav">
                         {% if user.is_authenticated %}
                         <li class="nav-item"><a class="nav-link text-white" href={% url 'accounts:profile' user.id %}>マイページ</a></li>
                         {% else %}
@@ -79,7 +79,7 @@
                     {% endfor %}
                 </div>
             {% endif %}
-            <div class="container mb-3">
+            <div class="container-fluid ms-1 mb-3">
                 {% block base_page %}{% endblock %}
             </div>
         </main>
