@@ -136,11 +136,12 @@ LOGIN_REDIRECT_URL = "kakomon:index" # 追加
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
 # お問合せ送信先
-SENDGRID_API_KEY= os.getenv('SENDGRID_API_KEY')
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.console.EmailBackend'
+DEFAULT_FROM_EMAIL = 'kaigishiwebsite@gmail.com'
 
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_HOST_USER = 'apikey'
-EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
+EMAIL_HOST_PASSWORD = os.getenv('SENDGRID_API_KEY')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
