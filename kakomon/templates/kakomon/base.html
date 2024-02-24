@@ -13,9 +13,9 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-lg bg-primary mb-5">
-            <div class="container-fluid">
+            <div class="container">
                 <a class="navbar-brand text-white" href={% url 'kakomon:index' %}>海技士過去問サイト</a>
-                <div class="col-md-8 mx-auto">
+                <div class="mx-auto">
                     <ul class="navbar-nav d-flex justify-content-center align-items-center">
                         <li class="nav-item dropdown mx-3">
                             <a class="nav-link dropdown-toggle active text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -60,8 +60,8 @@
                     </ul>
                 </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="ナビゲーションの切替"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarNav">
-                    <ul class="navbar-nav">
+                <div class="collapse navbar-collapse align-items-center show" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
                         {% if user.is_authenticated %}
                         <li class="nav-item"><a class="nav-link text-white" href={% url 'accounts:profile' user.id %}>マイページ</a></li>
                         {% else %}
@@ -72,7 +72,7 @@
                 </div>
             </div>
         </nav>
-        <main>
+        <main class="mx-5">
             {% if messages %}
                 <div class="messages">
                     {% for message in messages %}
