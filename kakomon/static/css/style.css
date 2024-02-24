@@ -14,6 +14,11 @@ p.no-indent {
   text-indent: 0;
 }
 
+/* navbar */
+.navbar-nav .nav-link {
+  white-space: nowrap;
+}
+
 /* ドロップダウン設定 */
 .dropdown:hover>.dropdown-menu {
     display: block;
