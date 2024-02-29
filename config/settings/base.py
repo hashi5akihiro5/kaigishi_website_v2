@@ -16,7 +16,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['kaigishiwebsite-bdb346898249.herokuapp.com']
+ALLOWED_HOSTS = ['kaigishiwebsite-stg-297104fcdf1f.herokuapp.com', 'kaigishiwebsite-bdb346898249.herokuapp.com']
 
 
 # Application definition
