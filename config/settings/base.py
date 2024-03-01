@@ -135,13 +135,14 @@ LOGIN_REDIRECT_URL = "kakomon:index" # 追加
 # カスタムユーザー
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
-# お問合せ送信先
-# SendGridを使用
-EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
-# 送信元メールアドレス
-DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
-# SendGridのAPIキー
-SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
+# お問合せ
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.mailgun.org'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+
 
 # 本番環境用
 SENDGRID_SANDBOX_MODE_IN_DEBUG = False
