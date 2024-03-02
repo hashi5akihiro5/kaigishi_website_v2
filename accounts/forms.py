@@ -1,9 +1,13 @@
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 from django import forms
 from django.core.exceptions import ValidationError
+from django.conf import settings
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.core.mail import BadHeaderError, send_mail
 from django.http import HttpResponse
 from django.forms import ModelForm, EmailField, EmailInput
+from smtplib import SMTP
 from .models import CustomUser
 
 
@@ -144,14 +148,41 @@ class ContactForm(forms.Form):
             self.fields['name'].initial = user.username
             self.fields['email'].initial = user.email
 
-    def send_email(self):
-        name = self.cleaned_data['name']
-        email = self.cleaned_data['email']
-        from_email = '{name} <{email}>'.format(name=name, email=email)
+    def createMIMEText(self):
         subject = self.cleaned_data["subject"]
         message = self.cleaned_data["message"]
-        recipient_list = ["admin@admin.com"] ## 送信元
-        try:
-            send_mail(subject, message, from_email, recipient_list)
-        except BadHeaderError:
-            return HttpResponse("無効なヘッダが検出されました。")
+        from_email = self.cleaned_data['email']
+        to_email = settings.DEFAULT_EMAIL
+
+
+        # MIMETextを作成
+        msg = MIMEMultipart()
+        msg['Subject'] = subject
+        msg['From'] = from_email
+        msg['To'] = to_email
+
+        msg.attach(MIMEText(message, 'plain', 'utf-8'))
+
+        return msg
+    
+
+    def send_email(self):
+        account = settings.EMAIL_HOST_USER
+        password = settings.EMAIL_HOST_PASSWORD
+
+        host = settings.EMAIL_HOST
+        port = settings.EMAIL_PORT
+
+        # サーバーを指定
+        server = SMTP(host, port)
+        server.starttls()
+
+        # ログイン処理
+        server.login(account, password)
+
+        msg = self.createMIMEText()
+        # メール送信
+        server.send_message(msg)
+
+        # 閉じる
+        server.quit()
