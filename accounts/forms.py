@@ -152,7 +152,7 @@ class ContactForm(forms.Form):
         subject = self.cleaned_data["subject"]
         message = self.cleaned_data["message"]
         from_email = self.cleaned_data['email']
-        to_email = settings.DEFAULT_EMAIL
+        to_email = settings.DEFAULT_FROM_EMAIL
 
 
         # MIMETextを作成
@@ -164,6 +164,15 @@ class ContactForm(forms.Form):
         msg.attach(MIMEText(message, 'plain', 'utf-8'))
 
         return msg
+    
+    def test_send_email(self):
+        send_mail(
+            'テストメールの件名',
+            'これはテストメールの本文です。',
+            'test@test.com',
+            [settings.DEFAULT_FROM_EMAIL],
+            fail_silently=False,
+            )
     
     def send_email(self):
         try:
