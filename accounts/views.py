@@ -85,6 +85,7 @@ class ContactFormView(FormView):
         return kwargs
     
     def form_valid(self, form):
+        form.test_send_email()
         form.send_email()
         return super().form_valid(form)
 

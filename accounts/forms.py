@@ -152,7 +152,7 @@ class ContactForm(forms.Form):
         subject = self.cleaned_data["subject"]
         message = self.cleaned_data["message"]
         from_email = self.cleaned_data['email']
-        to_email = settings.DEFAULT_EMAIL
+        to_email = settings.DEFAULT_FROM_EMAIL
 
 
         # MIMETextを作成
@@ -165,24 +165,36 @@ class ContactForm(forms.Form):
 
         return msg
     
-
+    def test_send_email(self):
+        send_mail(
+            'テストメールの件名',
+            'これはテストメールの本文です。',
+            'test@test.com',
+            [settings.DEFAULT_FROM_EMAIL],
+            fail_silently=False,
+            )
+    
     def send_email(self):
-        account = settings.EMAIL_HOST_USER
-        password = settings.EMAIL_HOST_PASSWORD
+        try:
+            account = settings.EMAIL_HOST_USER
+            password = settings.EMAIL_HOST_PASSWORD
 
-        host = settings.EMAIL_HOST
-        port = settings.EMAIL_PORT
+            host = settings.EMAIL_HOST
+            port = settings.EMAIL_PORT
 
-        # サーバーを指定
-        server = SMTP(host, port)
-        server.starttls()
+            # サーバーを指定
+            server = SMTP(host, port)
+            server.starttls()
 
-        # ログイン処理
-        server.login(account, password)
+            # ログイン処理
+            server.login(account, password)
 
-        msg = self.createMIMEText()
-        # メール送信
-        server.send_message(msg)
-
-        # 閉じる
-        server.quit()
+            msg = self.createMIMEText()
+            # メール送信
+            server.send_message(msg)
+        except Exception as e:
+            # ここでエラーログを記録
+            print(f"メール送信エラー: {e}")
+        finally:
+            # 閉じる
+            server.quit()
