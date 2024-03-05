@@ -4,8 +4,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.conf import settings
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.core.mail import BadHeaderError, send_mail
-from django.http import HttpResponse
+from django.core.mail import EmailMessage, send_mail
 from django.forms import ModelForm, EmailField, EmailInput
 from smtplib import SMTP
 from .models import CustomUser
@@ -149,16 +148,16 @@ class ContactForm(forms.Form):
             self.fields['email'].initial = user.email
 
     def createMIMEText(self):
+        user_email = self.cleaned_data['email']
         subject = self.cleaned_data["subject"]
         message = self.cleaned_data["message"]
-        from_email = self.cleaned_data['email']
         to_email = settings.DEFAULT_FROM_EMAIL
 
 
         # MIMETextを作成
         msg = MIMEMultipart()
         msg['Subject'] = subject
-        msg['From'] = from_email
+        msg['From'] = user_email
         msg['To'] = to_email
 
         msg.attach(MIMEText(message, 'plain', 'utf-8'))
@@ -180,6 +179,7 @@ class ContactForm(forms.Form):
             password = settings.EMAIL_HOST_PASSWORD
 
             host = settings.EMAIL_HOST
+
             port = settings.EMAIL_PORT
 
             # サーバーを指定
@@ -190,6 +190,7 @@ class ContactForm(forms.Form):
             server.login(account, password)
 
             msg = self.createMIMEText()
+
             # メール送信
             server.send_message(msg)
         except Exception as e:
@@ -197,4 +198,5 @@ class ContactForm(forms.Form):
             print(f"メール送信エラー: {e}")
         finally:
             # 閉じる
-            server.quit()
+            if 'server' in locals():
+                server.quit()
