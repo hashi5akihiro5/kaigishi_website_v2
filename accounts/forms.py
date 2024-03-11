@@ -1,3 +1,4 @@
+import logging
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from django import forms
@@ -8,6 +9,10 @@ from django.core.mail import EmailMessage, send_mail
 from django.forms import ModelForm, EmailField, EmailInput
 from smtplib import SMTP
 from .models import CustomUser
+
+
+# ロガーの設定
+logger = logging.getLogger(__name__)
 
 
 """ログイン"""
@@ -195,7 +200,7 @@ class ContactForm(forms.Form):
             server.send_message(msg)
         except Exception as e:
             # ここでエラーログを記録
-            print(f"メール送信エラー: {e}")
+            logger.error(f"メール送信エラー", exc_info=True)
         finally:
             # 閉じる
             if 'server' in locals():
