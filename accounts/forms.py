@@ -5,14 +5,10 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.conf import settings
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.core.mail import EmailMessage, send_mail
+from django.core.mail import send_mail
 from django.forms import ModelForm, EmailField, EmailInput
 from smtplib import SMTP
 from .models import CustomUser
-
-
-# ロガーの設定
-logger = logging.getLogger(__name__)
 
 
 """ログイン"""
@@ -169,15 +165,6 @@ class ContactForm(forms.Form):
 
         return msg
     
-    def test_send_email(self):
-        send_mail(
-            'テストメールの件名',
-            'これはテストメールの本文です。',
-            'test@test.com',
-            [settings.DEFAULT_FROM_EMAIL],
-            fail_silently=False,
-            )
-    
     def send_email(self):
         try:
             account = settings.EMAIL_HOST_USER
@@ -189,6 +176,7 @@ class ContactForm(forms.Form):
 
             # サーバーを指定
             server = SMTP(host, port)
+            server.ehlo()
             server.starttls()
 
             # ログイン処理
@@ -200,7 +188,7 @@ class ContactForm(forms.Form):
             server.send_message(msg)
         except Exception as e:
             # ここでエラーログを記録
-            logger.error(f"メール送信エラー", exc_info=True)
+            print(e)
         finally:
             # 閉じる
             if 'server' in locals():
