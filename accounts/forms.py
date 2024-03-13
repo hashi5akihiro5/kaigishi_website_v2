@@ -1,11 +1,9 @@
-import logging
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from django import forms
 from django.core.exceptions import ValidationError
 from django.conf import settings
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.core.mail import send_mail
 from django.forms import ModelForm, EmailField, EmailInput
 from smtplib import SMTP
 from .models import CustomUser
@@ -167,12 +165,12 @@ class ContactForm(forms.Form):
     
     def send_email(self):
         try:
-            account = settings.EMAIL_HOST_USER
-            password = settings.EMAIL_HOST_PASSWORD
+            account = settings.MAILGUN_SMTP_LOGIN
+            password = settings.MAILGUN_SMTP_PASSWORD
 
-            host = settings.EMAIL_HOST
+            host = settings.MAILGUN_SMTP_SERVER
 
-            port = settings.EMAIL_PORT
+            port = settings.MAILGUN_SMTP_PORT
 
             # サーバーを指定
             server = SMTP(host, port)

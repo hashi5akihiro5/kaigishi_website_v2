@@ -136,11 +136,12 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 
 # お問合せ
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.mailgun.org'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+MAILGUN_SMTP_SERVER = 'smtp.mailgun.org'
+MAILGUN_SMTP_PORT = 587
+MAILGUN_USE_TLS = True
+MAILGUN_PUBLIC_KEY = os.getenv('MAILGUN_PUBLIC_KEY')
+MAILGUN_SMTP_LOGIN = os.getenv('MAILGUN_SMTP_LOGIN')
+MAILGUN_SMTP_PASSWORD = os.getenv('MAILGUN_SMTP_PASSWORD')
 DEFAULT_FROM_EMAIL = "kaigishiwebsite@gmail.com"
 
 
