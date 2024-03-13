@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 
+handler500 = views.my_customized_server_error
 
 app_name = 'accounts'
 urlpatterns = [
@@ -11,5 +12,3 @@ urlpatterns = [
     path("contact/", views.ContactFormView.as_view(), name="contact"),
     path("contact/result/", views.ContactResultView.as_view(), name="contact_result"),
 ]
-
-handler500 = views.my_customized_server_error
