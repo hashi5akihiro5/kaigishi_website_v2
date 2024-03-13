@@ -169,7 +169,6 @@ class ContactForm(forms.Form):
             password = settings.MAILGUN_SMTP_PASSWORD
 
             host = settings.MAILGUN_SMTP_SERVER
-
             port = settings.MAILGUN_SMTP_PORT
 
             # サーバーを指定

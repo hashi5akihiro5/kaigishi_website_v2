@@ -4,17 +4,8 @@ from django.views.generic import TemplateView, FormView, UpdateView
 from django.contrib.auth.views import LoginView
 from django.urls import reverse, reverse_lazy
 from . import forms
-from django.views.decorators.csrf import requires_csrf_token
-from django.http import HttpResponseServerError
 
 User = get_user_model()
-
-@requires_csrf_token
-def my_customized_server_error(request, template_name='500.html'):
-    import sys
-    from django.views import debug
-    error_html = debug.technical_500_response(request, *sys.exc_info()).content
-    return HttpResponseServerError(error_html)
 
 """ログインページ"""
 class CustomLoginView(LoginView):
