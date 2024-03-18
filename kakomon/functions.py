@@ -65,8 +65,8 @@ def get_image_upload_path(instance, filename):
             str(instance.subject.exam.get_exam_type_display()),
             str(instance.subject.exam.get_navigation_or_mechanism_display()),
             str(instance.subject.exam.get_grade_display()),
-            str(instance.subject.exam.date.year),
-            str(instance.subject.exam.date.month),
+            f'{str(instance.subject.exam.date.year)}年',
+            f'{str(instance.subject.exam.date.month)}月',
             str(instance.subject.get_name_display()),
             f'大問{str(instance.daimon)}',
             filename
