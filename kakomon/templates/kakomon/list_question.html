@@ -30,23 +30,27 @@
                 {% if question.description and not question.description_flex %}
                 <p>{{ question.description | safe | linebreaksbr }}</p>
                 <!-- 問題画像がある場合 -->
-                {% if question.question_image %}
-                <img src="{{ question.question_image.url }}" class="img-fluid border border-secondary col-4 mb-2" alt="Question Image"> 
-                {% endif %}
-                <!-- 枝問なし 問題文表示-->
-                {% if not question.edamon %}
-                <p>{{ question.question | safe | linebreaksbr }}</p>
-                {% endif %}
-                <!-- 問題説明なし -->
+                <section>
+                    {% if question.question_image %}
+                    <img src="{{ question.question_image.url }}" class="question-img" alt="Question Image"> 
+                    {% endif %}
+                    <!-- 枝問なし 問題文表示-->
+                    {% if not question.edamon %}
+                    <p>{{ question.question | safe | linebreaksbr }}</p>
+                    {% endif %}
+                </section>
                 {% else %}
-                <!-- 枝問なし 問題文表示-->
-                {% if not question.edamon %}
-                <p>{{ question.question | safe | linebreaksbr }}</p>
-                {% endif %}
-                <!-- 問題画像がある場合 -->
-                {% if question.question_image %}
-                <img src="{{ question.question_image.url }}" class="img-fluid border border-secondary col-4 mb-2" alt="Question Image"> 
-                {% endif %}
+                <!-- 問題説明なし -->
+                <section>
+                    <!-- 問題画像がある場合 -->
+                    {% if question.question_image %}
+                    <img src="{{ question.question_image.url }}" class="question-img" alt="Question Image"> 
+                    {% endif %}
+                    <!-- 枝問なし 問題文表示-->
+                    {% if not question.edamon %}
+                    <p>{{ question.question | safe | linebreaksbr }}</p>
+                    {% endif %}
+                </section>
                 {% endif %}
             </div>
             {% endifchanged %}
