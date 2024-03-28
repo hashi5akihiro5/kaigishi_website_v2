@@ -43,3 +43,13 @@ SHOMON = (
     (4, '四'),
     (5, '五'),
 )
+
+IMG_DESCRIPTION_OR_QUESTION = (
+    ('description', '説明'),
+    ('question', '問題'),
+)
+
+IMG_RIGHT_OR_UNDER = (
+    ('right', '右'),
+    ('under', '下'),
+)
