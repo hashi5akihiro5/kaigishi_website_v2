@@ -15,8 +15,8 @@
             <div class="d-flex">
                 <p class="daimon"><span class="border p-1 me-2">問題</span>{{ daimon }}</p>
                 <!-- 大問横に問題説明文表示 -->
-                {% if question.description_flex %}
-                <p>{{ question.description | safe | linebreaksbr }}</p>
+                {% if question.daimon_description %}
+                <p>{{ question.daimon_description | safe | linebreaksbr }}</p>
                 {% endif %}
             </div>
             {% endifchanged %}
@@ -26,32 +26,35 @@
             {% ifchanged question.shomon %}
             <div class="d-flex">
                 <p class="shomon">({{ question.get_shomon_display }})</p>
-                <!-- 小問横に問題説明表示 -->
-                {% if question.description and not question.description_flex %}
-                <p>{{ question.description | safe | linebreaksbr }}</p>
-                <!-- 問題画像がある場合 -->
-                <section>
-                    {% if question.question_image %}
-                    <img src="{{ question.question_image.url }}" class="question-img" alt="Question Image"> 
-                    {% endif %}
-                    <!-- 枝問なし 問題文表示-->
-                    {% if not question.edamon %}
-                    <p>{{ question.question | safe | linebreaksbr }}</p>
-                    {% endif %}
-                </section>
+                <!-- 小問横 問題説明あり 画像あり 右側 -->
+                {% if question.question_image_position_description_or_question == "description" and question_image_position_right_or_under == "right" %}
+                <img src="{{ question.question_image.url }}" class="img-right" alt="Question Image">
+                <p>{{ question.shomon_description | safe | linebreaksbr }}</p>
+                {% elif question.question_image_position_description_or_question == "description" and question_image_position_right_or_under == "under" %}
+                <!-- 小問横 問題説明あり 画像あり 下側 -->
+                <p>{{ question.shomon_description | safe | linebreaksbr }}</p>
+                <img src="{{ question.question_image.url }}" class="img-under" alt="Question Image">
                 {% else %}
-                <!-- 問題説明なし -->
+                <!-- 小問横 問題説明あり 画像なし -->
+                <p>{{ question.shomon_description | safe | linebreaksbr }}</p>
+                {% endif %}
                 <section>
-                    <!-- 問題画像がある場合 -->
-                    {% if question.question_image %}
-                    <img src="{{ question.question_image.url }}" class="question-img" alt="Question Image"> 
+                    <!-- 小問 画像あり 右側 -->
+                    {% if question.question_image_position_description_or_question == "question" and question_image_position == "right" %}
+                    <img src="{{ question.question_image.url }}" class="img-right" alt="Question Image"> 
                     {% endif %}
-                    <!-- 枝問なし 問題文表示-->
+                    <!-- 小問  -->
                     {% if not question.edamon %}
+                    {% if question_no_indent %}
+                    <p class="no-indent">{{ question.question | safe | linebreaksbr }}</p>
+                    {% else %}
                     <p>{{ question.question | safe | linebreaksbr }}</p>
                     {% endif %}
+                    <!-- 小問 画像あり 下側 -->
+                    {% if question.question_image_position_description_or_question == "question" and question_image_position == "under" %}
+                    <img src="{{ question.question_image.url }}" class="img-under" alt="Question Image">
+                    {% endif %}
                 </section>
-                {% endif %}
             </div>
             {% endifchanged %}
             <!-- 小問番号なし（航海・英語で使用） -->
@@ -65,8 +68,20 @@
             {% if question.edamon %}
             <div class="d-flex">
                 <p class="edamon">（{{ question.edamon }}）</p>
-                <!-- 問題文表示 -->
+                <!-- 枝問 画像あり 右側 -->
+                {% if question.question_image_position_description_or_question == "question" and question_image_position == "right" %}
+                <img src="{{ question.question_image.url }}" class="img-right" alt="Question Image"> 
+                {% endif %}
+                <!-- 枝問  -->
+                {% if question_no_indent %}
+                <p class="no-indent">{{ question.question | safe | linebreaksbr }}</p>
+                {% else %}
                 <p>{{ question.question | safe | linebreaksbr }}</p>
+                {% endif %}
+                <!-- 枝問 画像あり 下側 -->
+                {% if question.question_image_position_description_or_question == "question" and question_image_position == "under" %}
+                <img src="{{ question.question_image.url }}" class="img-under" alt="Question Image">
+                {% endif %}
             </div>
             {% endif %}
             

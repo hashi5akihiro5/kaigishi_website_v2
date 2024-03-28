@@ -42,7 +42,7 @@ def default_exam_id():
         str(1),# 航機種類（1:航海, 2:機関）
         str(1),# 級名(1:1級, 2:2級, 3:3級)
         str(today.year),# 年度
-        str(today.month),# 月度
+        str(today.month).zfill(2),# 月度
         ])
     return exam_id
 

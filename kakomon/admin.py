@@ -1,9 +1,9 @@
 from django.contrib import admin
-from .models import Exam, Subject, Question
+from .models import Exam, Subject, Question, Category, Tag, SimilarQuestion
 
 
 class ExamAdmin(admin.ModelAdmin):
-    list_display = ("date", "grade", "navigation_or_mechanism", "exam_type", )
+    list_display = ("date", "navigation_or_mechanism", "grade", "exam_type", )
     list_filter = ("exam_type", "grade", "navigation_or_mechanism",) 
     search_fields = ("exam_id",)
     date_hierarchy = "date"
@@ -37,6 +37,11 @@ class QuestionAdmin(admin.ModelAdmin):
     list_filter = ("subject__exam__exam_type", "subject__exam__navigation_or_mechanism","subject__exam__grade",  "subject__name", "daimon", "shomon", "edamon")
     search_fields = ("subject__name",)
     date_hierarchy = "subject__exam__date"
+    radio_fields = {
+        "question_image_position_description_or_question": admin.HORIZONTAL,
+        "question_image_position_right_or_under": admin.HORIZONTAL,
+        "answer_image_position_right_or_under": admin.HORIZONTAL,
+        }
 
     def get_subject(self, obj):
         return obj.subject.get_name_display()
@@ -59,6 +64,22 @@ class QuestionAdmin(admin.ModelAdmin):
     get_exam_type.short_description = '筆記・口述'
 
 
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ("id", "name")
+
+
+class TagAdmin(admin.ModelAdmin):
+    list_display = ("id", "name")
+
+
+class SimilarQuestionAdmin(admin.ModelAdmin):
+    list_display = ("similarity_id", "source_question")
+    list_filter = ("similarity_id",)
+
+
 admin.site.register(Exam, ExamAdmin)
 admin.site.register(Subject, SubjectAdmin)
 admin.site.register(Question, QuestionAdmin)
+admin.site.register(Category, CategoryAdmin)
+admin.site.register(Tag, TagAdmin)
+admin.site.register(SimilarQuestion, SimilarQuestionAdmin)
