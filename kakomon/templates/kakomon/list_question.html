@@ -27,10 +27,10 @@
             <div class="d-flex">
                 <p class="shomon">({{ question.get_shomon_display }})</p>
                 <!-- 小問横 問題説明あり 画像あり 右側 -->
-                {% if question.question_image_position_description_or_question == "description" and question_image_position_right_or_under == "right" %}
-                <img src="{{ question.question_image.url }}" class="img-right" alt="Question Image">
+                {% if question.question_image_position_description_or_question == "description" and question.question_image_position_right_or_under == "right" %}
                 <p>{{ question.shomon_description | safe | linebreaksbr }}</p>
-                {% elif question.question_image_position_description_or_question == "description" and question_image_position_right_or_under == "under" %}
+                <img src="{{ question.question_image.url }}" class="img-right" alt="Question Image">
+                {% elif question.question_image_position_description_or_question == "description" and question.question_image_position_right_or_under == "under" %}
                 <!-- 小問横 問題説明あり 画像あり 下側 -->
                 <p>{{ question.shomon_description | safe | linebreaksbr }}</p>
                 <img src="{{ question.question_image.url }}" class="img-under" alt="Question Image">
@@ -40,7 +40,7 @@
                 {% endif %}
                 <section>
                     <!-- 小問 画像あり 右側 -->
-                    {% if question.question_image_position_description_or_question == "question" and question_image_position == "right" %}
+                    {% if question.question_image_position_description_or_question == "question" and question.question_image_position_right_or_under == "right" %}
                     <img src="{{ question.question_image.url }}" class="img-right" alt="Question Image"> 
                     {% endif %}
                     <!-- 小問  -->
@@ -51,7 +51,7 @@
                     <p>{{ question.question | safe | linebreaksbr }}</p>
                     {% endif %}
                     <!-- 小問 画像あり 下側 -->
-                    {% if question.question_image_position_description_or_question == "question" and question_image_position == "under" %}
+                    {% if question.question_image_position_description_or_question == "question" and question.question_image_position_right_or_under == "under" %}
                     <img src="{{ question.question_image.url }}" class="img-under" alt="Question Image">
                     {% endif %}
                     {% endif %}
@@ -70,7 +70,7 @@
             <div class="d-flex">
                 <p class="edamon">（{{ question.edamon }}）</p>
                 <!-- 枝問 画像あり 右側 -->
-                {% if question.question_image_position_description_or_question == "question" and question_image_position == "right" %}
+                {% if question.question_image_position_description_or_question == "question" and question.question_image_position_right_or_under == "right" %}
                 <img src="{{ question.question_image.url }}" class="img-right" alt="Question Image"> 
                 {% endif %}
                 <!-- 枝問  -->
@@ -80,7 +80,7 @@
                 <p>{{ question.question | safe | linebreaksbr }}</p>
                 {% endif %}
                 <!-- 枝問 画像あり 下側 -->
-                {% if question.question_image_position_description_or_question == "question" and question_image_position == "under" %}
+                {% if question.question_image_position_description_or_question == "question" and question.question_image_position_right_or_under == "under" %}
                 <img src="{{ question.question_image.url }}" class="img-under" alt="Question Image">
                 {% endif %}
             </div>

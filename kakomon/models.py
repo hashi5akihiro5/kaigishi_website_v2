@@ -16,7 +16,7 @@ class Exam(models.Model):
         return f'{self.date.year}年 {self.date.month}月 {self.get_exam_type_display()} {self.get_grade_display()} {self.get_navigation_or_mechanism_display()}'
     
     class Meta:
-        ordering = ["-date", "-navigation_or_mechanism"]
+        ordering = ["-date", "-navigation_or_mechanism", "grade"]
         verbose_name = "試験"
         verbose_name_plural = "1.試験"
 
@@ -36,7 +36,7 @@ class Subject(models.Model):
         return f'{self.exam.date.year}年 {self.exam.date.month}月 {self.exam.get_exam_type_display()} {self.exam.get_grade_display()} {self.exam.get_navigation_or_mechanism_display()} {self.get_name_display()}'
     
     class Meta:
-        ordering = ["-exam__exam_id", "name_order"]
+        ordering = ["-exam__date", "-exam__navigation_or_mechanism", "exam__grade", "name_order"]
         verbose_name = "科目"
         verbose_name_plural = "2.科目"
     
@@ -67,7 +67,7 @@ class Question(models.Model):
             return f'{self.subject.exam.date.year}年 {self.subject.exam.date.month}月 {self.subject.exam.get_exam_type_display()} {self.subject.exam.get_grade_display()} {self.subject.exam.get_navigation_or_mechanism_display()} {self.subject.get_name_display()}_大問{self.daimon}_小問{self.shomon}'
     
     class Meta:
-        ordering = ["subject", "daimon", "shomon", "edamon"]
+        ordering = ["-subject__exam__date", "-subject__exam__navigation_or_mechanism", "subject__exam__grade", "subject__name_order", "daimon", "shomon", "edamon"]
         verbose_name = "問題"
         verbose_name_plural = "3.問題"
 
