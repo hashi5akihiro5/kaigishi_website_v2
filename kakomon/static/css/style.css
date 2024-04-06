@@ -43,6 +43,12 @@ p.no-indent {
   margin-bottom: 0.25rem;
 }
 
+.img-under {
+  width: auto;
+  border: 1px solid;
+  margin-bottom: 1rem;
+}
+
 /* スマホスクリーンサイズでfloatを無効にする */
 @media only screen and (max-width: 450px) {
   .img-right {
