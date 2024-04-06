@@ -28,12 +28,16 @@
                 <p class="shomon">({{ question.get_shomon_display }})</p>
                 <!-- 小問横 問題説明あり 画像あり 右側 -->
                 {% if question.question_image_position_description_or_question == "description" and question.question_image_position_right_or_under == "right" %}
-                <p>{{ question.shomon_description | safe | linebreaksbr }}</p>
-                <img src="{{ question.question_image.url }}" class="img-right" alt="Question Image">
+                <section>
+                    <img src="{{ question.question_image.url }}" class="img-right" alt="Question Image">
+                    <p>{{ question.shomon_description | safe | linebreaksbr }}</p>
+                </section>
                 {% elif question.question_image_position_description_or_question == "description" and question.question_image_position_right_or_under == "under" %}
                 <!-- 小問横 問題説明あり 画像あり 下側 -->
-                <p>{{ question.shomon_description | safe | linebreaksbr }}</p>
-                <img src="{{ question.question_image.url }}" class="img-under" alt="Question Image">
+                <section>
+                    <p>{{ question.shomon_description | safe | linebreaksbr }}</p>
+                    <img src="{{ question.question_image.url }}" class="img-under" alt="Question Image">
+                </section>
                 {% else %}
                 <!-- 小問横 問題説明あり 画像なし -->
                 <p>{{ question.shomon_description | safe | linebreaksbr }}</p>
