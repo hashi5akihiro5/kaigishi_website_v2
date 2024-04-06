@@ -58,6 +58,15 @@ p.no-indent {
   }
 }
 
+/* 問題装飾 */
+.under-line {
+  border-bottom: 2px solid #000;
+}
+
+.square {
+  padding: 0.5em 1em;
+  border: 2px solid #000000;
+}
 
 /* 解答を表示する */
 .details {
