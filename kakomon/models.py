@@ -9,11 +9,11 @@ class Exam(models.Model):
     exam_id = models.IntegerField(default=default_exam_id)
     date = models.DateField(verbose_name='定期')
     exam_type = models.CharField(verbose_name="筆記・口述", choices=EXAMTYPE, max_length=8)
-    grade = models.CharField(verbose_name="級名", choices=GRADE, max_length=6)
     navigation_or_mechanism = models.CharField(verbose_name="航海・機関", choices=NAVIGATION_OR_MECHANISM, max_length=10)
+    grade = models.CharField(verbose_name="級名", choices=GRADE, max_length=6)
 
     def __str__(self):
-        return f'{self.date.year}年 {self.date.month}月 {self.get_exam_type_display()} {self.get_grade_display()} {self.get_navigation_or_mechanism_display()}'
+        return f'{self.date.year}年 {self.date.month}月 {self.get_exam_type_display()} {self.get_navigation_or_mechanism_display()} {self.get_grade_display()}'
     
     class Meta:
         ordering = ["-date", "-navigation_or_mechanism", "grade"]
