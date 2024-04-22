@@ -3,3 +3,5 @@ db.sqlite3
 .env
 config/settings/local.py
 config/static/*
+latest.dump
+backup
