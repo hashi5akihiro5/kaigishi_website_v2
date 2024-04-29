@@ -91,7 +91,7 @@ class QuestionListView(ListView):
 
     def get_form_kwargs(self):
         self.exam_type = find_key_for_value(self.kwargs.get('exam_type'), EXAMTYPE)
-        self.navigation_or_engineering = find_key_for_value(self.kwargs.get('navigation_or_engineering'), NAVIGATION_OR_engineering)
+        self.navigation_or_engineering = find_key_for_value(self.kwargs.get('navigation_or_engineering'), NAVIGATION_OR_ENGINEERING)
         self.grade = find_key_for_value(self.kwargs.get('grade'), GRADE)
         self.year = self.kwargs.get('year')
         self.month = self.kwargs.get('month')
