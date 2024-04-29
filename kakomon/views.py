@@ -1,5 +1,5 @@
 from django.views.generic import TemplateView, ListView
-from .constants import EXAMTYPE, NAVIGATION_OR_MECHANISM, GRADE, SUBJECT
+from .constants import EXAMTYPE, NAVIGATION_OR_ENGINEERING, GRADE, SUBJECT
 from .functions import find_key_for_value, get_exam_id
 from .models import Exam, Subject, Question
 
@@ -17,7 +17,7 @@ class ExamListView(ListView):
 
     def get_form_kwargs(self):
         self.exam_type = find_key_for_value(self.kwargs.get('exam_type'), EXAMTYPE)
-        self.navigation_or_mechanism = find_key_for_value(self.kwargs.get('navigation_or_mechanism'), NAVIGATION_OR_MECHANISM)
+        self.navigation_or_engineering = find_key_for_value(self.kwargs.get('navigation_or_engineering'), NAVIGATION_OR_ENGINEERING)
         self.grade = find_key_for_value(self.kwargs.get('grade'), GRADE)
     
     def get_queryset(self):
@@ -28,7 +28,7 @@ class ExamListView(ListView):
         # フィルタリング
         queryset = queryset.filter(
             exam_type = self.exam_type,
-            navigation_or_mechanism = self.navigation_or_mechanism,
+            navigation_or_engineering = self.navigation_or_engineering,
             grade = self.grade,
         )
 
@@ -40,7 +40,7 @@ class ExamListView(ListView):
         context = super().get_context_data()
         context.update({
             'exam_type': self.kwargs.get('exam_type'),
-            'navigation_or_mechanism': self.kwargs.get('navigation_or_mechanism'),
+            'navigation_or_engineering': self.kwargs.get('navigation_or_engineering'),
             'grade': self.kwargs.get('grade')
         })
         return context
@@ -54,11 +54,11 @@ class SubjectListView(ListView):
 
     def get_form_kwargs(self):
         self.exam_type = find_key_for_value(self.kwargs.get('exam_type'), EXAMTYPE)
-        self.navigation_or_mechanism = find_key_for_value(self.kwargs.get('navigation_or_mechanism'), NAVIGATION_OR_MECHANISM)
+        self.navigation_or_engineering = find_key_for_value(self.kwargs.get('navigation_or_engineering'), NAVIGATION_OR_ENGINEERING)
         self.grade = find_key_for_value(self.kwargs.get('grade'), GRADE)
         self.year = self.kwargs.get('year')
         self.month = self.kwargs.get('month')
-        self.exam_id = get_exam_id(self.exam_type, self.navigation_or_mechanism, self.grade, self.year, self.month)
+        self.exam_id = get_exam_id(self.exam_type, self.navigation_or_engineering, self.grade, self.year, self.month)
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -75,7 +75,7 @@ class SubjectListView(ListView):
         context = super().get_context_data()
         context.update({
             'exam_type': self.kwargs.get('exam_type'),
-            'navigation_or_mechanism': self.kwargs.get('navigation_or_mechanism'),
+            'navigation_or_engineering': self.kwargs.get('navigation_or_engineering'),
             'grade': self.kwargs.get('grade'),
             'year': self.kwargs.get('year'),
             'month': self.kwargs.get('month'),
@@ -91,11 +91,11 @@ class QuestionListView(ListView):
 
     def get_form_kwargs(self):
         self.exam_type = find_key_for_value(self.kwargs.get('exam_type'), EXAMTYPE)
-        self.navigation_or_mechanism = find_key_for_value(self.kwargs.get('navigation_or_mechanism'), NAVIGATION_OR_MECHANISM)
+        self.navigation_or_engineering = find_key_for_value(self.kwargs.get('navigation_or_engineering'), NAVIGATION_OR_engineering)
         self.grade = find_key_for_value(self.kwargs.get('grade'), GRADE)
         self.year = self.kwargs.get('year')
         self.month = self.kwargs.get('month')
-        self.exam_id = get_exam_id(self.exam_type, self.navigation_or_mechanism, self.grade, self.year, self.month)
+        self.exam_id = get_exam_id(self.exam_type, self.navigation_or_engineering, self.grade, self.year, self.month)
         self.subject = find_key_for_value(self.kwargs.get('subject'), SUBJECT)
     
     def get_queryset(self):
@@ -114,7 +114,7 @@ class QuestionListView(ListView):
         context = super().get_context_data(**kwargs)
         context.update({
             'exam_type': self.kwargs.get('exam_type'),
-            'navigation_or_mechanism': self.kwargs.get('navigation_or_mechanism'),
+            'navigation_or_engineering': self.kwargs.get('navigation_or_engineering'),
             'grade': self.kwargs.get('grade'),
             'year': self.kwargs.get('year'),
             'month': self.kwargs.get('month'),

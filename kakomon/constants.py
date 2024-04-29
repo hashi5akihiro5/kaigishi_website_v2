@@ -3,9 +3,9 @@ EXAMTYPE = (
     ('speaking', '口述'),
 )
 
-NAVIGATION_OR_MECHANISM = (
+NAVIGATION_OR_ENGINEERING = (
     ('navigation', '航海'),
-    ('mechanism', '機関'),
+    ('engineering', '機関'),
 )
 
 GRADE = (
@@ -19,9 +19,9 @@ SUBJECT_CHOICES = {
     'operation': 2,
     'law': 3,
     'english': 4,
-    'mechanism1': 5,
-    'mechanism2': 6,
-    'mechanism3': 7,
+    'engineering1': 5,
+    'engineering2': 6,
+    'engineering3': 7,
     'working': 8,
 }
 
@@ -30,9 +30,9 @@ SUBJECT = (
     ('operation', '運用'),
     ('law', '法規'),
     ('english', '英語'),
-    ('mechanism1', '機関1'),
-    ('mechanism2', '機関2'),
-    ('mechanism3', '機関3'),
+    ('engineering1', '機関1'),
+    ('engineering2', '機関2'),
+    ('engineering3', '機関3'),
     ('working', '執務一般'),
 )
 

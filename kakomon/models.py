@@ -1,5 +1,5 @@
 from django import forms
-from .constants import EXAMTYPE, NAVIGATION_OR_MECHANISM, GRADE, SUBJECT, SHOMON, SUBJECT_CHOICES, IMG_DESCRIPTION_OR_QUESTION, IMG_RIGHT_OR_UNDER
+from .constants import EXAMTYPE, NAVIGATION_OR_ENGINEERING, GRADE, SUBJECT, SHOMON, SUBJECT_CHOICES, IMG_DESCRIPTION_OR_QUESTION, IMG_RIGHT_OR_UNDER
 from django.db import models
 from .functions import default_exam_id, get_file_path, get_image_upload_path
 
@@ -9,14 +9,14 @@ class Exam(models.Model):
     exam_id = models.IntegerField(default=default_exam_id)
     date = models.DateField(verbose_name='定期')
     exam_type = models.CharField(verbose_name="筆記・口述", choices=EXAMTYPE, max_length=8)
-    navigation_or_mechanism = models.CharField(verbose_name="航海・機関", choices=NAVIGATION_OR_MECHANISM, max_length=10)
+    navigation_or_engineering = models.CharField(verbose_name="航海・機関", choices=NAVIGATION_OR_ENGINEERING, max_length=11)
     grade = models.CharField(verbose_name="級名", choices=GRADE, max_length=6)
 
     def __str__(self):
-        return f'{self.date.year}年 {self.date.month}月 {self.get_exam_type_display()} {self.get_navigation_or_mechanism_display()} {self.get_grade_display()}'
+        return f'{self.date.year}年 {self.date.month}月 {self.get_exam_type_display()} {self.get_navigation_or_engineering_display()} {self.get_grade_display()}'
     
     class Meta:
-        ordering = ["-date", "-navigation_or_mechanism", "grade"]
+        ordering = ["-date", "-navigation_or_engineering", "grade"]
         verbose_name = "試験"
         verbose_name_plural = "1.試験"
 
@@ -24,7 +24,7 @@ class Exam(models.Model):
 """科目モデル"""
 class Subject(models.Model):
     exam = models.ForeignKey(Exam, on_delete=models.CASCADE, related_name='subjects', verbose_name='試験')
-    name = models.CharField(verbose_name="科目", choices=SUBJECT, max_length=10)
+    name = models.CharField(verbose_name="科目", choices=SUBJECT, max_length=12)
     name_order = models.IntegerField(verbose_name="科目順序", choices=[(v, k) for k, v in SUBJECT_CHOICES.items()])
     file_path = models.FileField(verbose_name="PDF", upload_to=get_file_path, null=True, blank=True)
 
@@ -33,10 +33,10 @@ class Subject(models.Model):
         super().save(*args, **kwargs)
     
     def __str__(self):
-        return f'{self.exam.date.year}年 {self.exam.date.month}月 {self.exam.get_exam_type_display()} {self.exam.get_grade_display()} {self.exam.get_navigation_or_mechanism_display()} {self.get_name_display()}'
+        return f'{self.exam.date.year}年 {self.exam.date.month}月 {self.exam.get_exam_type_display()} {self.exam.get_grade_display()} {self.exam.get_navigation_or_engineering_display()} {self.get_name_display()}'
     
     class Meta:
-        ordering = ["-exam__date", "-exam__navigation_or_mechanism", "exam__grade", "name_order"]
+        ordering = ["-exam__date", "-exam__navigation_or_engineering", "exam__grade", "name_order"]
         verbose_name = "科目"
         verbose_name_plural = "2.科目"
     
@@ -62,12 +62,12 @@ class Question(models.Model):
 
     def __str__(self):
         if self.edamon:
-            return f'{self.subject.exam.date.year}年 {self.subject.exam.date.month}月 {self.subject.exam.get_exam_type_display()} {self.subject.exam.get_grade_display()} {self.subject.exam.get_navigation_or_mechanism_display()} {self.subject.get_name_display()}_大問{self.daimon}_小問{self.shomon}_枝問{self.edamon}'
+            return f'{self.subject.exam.date.year}年 {self.subject.exam.date.month}月 {self.subject.exam.get_exam_type_display()} {self.subject.exam.get_grade_display()} {self.subject.exam.get_navigation_or_engineering_display()} {self.subject.get_name_display()}_大問{self.daimon}_小問{self.shomon}_枝問{self.edamon}'
         else:
-            return f'{self.subject.exam.date.year}年 {self.subject.exam.date.month}月 {self.subject.exam.get_exam_type_display()} {self.subject.exam.get_grade_display()} {self.subject.exam.get_navigation_or_mechanism_display()} {self.subject.get_name_display()}_大問{self.daimon}_小問{self.shomon}'
+            return f'{self.subject.exam.date.year}年 {self.subject.exam.date.month}月 {self.subject.exam.get_exam_type_display()} {self.subject.exam.get_grade_display()} {self.subject.exam.get_navigation_or_engineering_display()} {self.subject.get_name_display()}_大問{self.daimon}_小問{self.shomon}'
     
     class Meta:
-        ordering = ["-subject__exam__date", "-subject__exam__navigation_or_mechanism", "subject__exam__grade", "subject__name_order", "daimon", "shomon", "edamon"]
+        ordering = ["-subject__exam__date", "-subject__exam__navigation_or_engineering", "subject__exam__grade", "subject__name_order", "daimon", "shomon", "edamon"]
         verbose_name = "問題"
         verbose_name_plural = "3.問題"
 
