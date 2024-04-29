@@ -3,15 +3,15 @@ from .models import Exam, Subject, Question, Category, Tag, SimilarQuestion
 
 
 class ExamAdmin(admin.ModelAdmin):
-    list_display = ("date", "navigation_or_mechanism", "grade", "exam_type", )
-    list_filter = ("exam_type", "grade", "navigation_or_mechanism",) 
+    list_display = ("date", "navigation_or_engineering", "grade", "exam_type", )
+    list_filter = ("exam_type", "grade", "navigation_or_engineering",) 
     search_fields = ("exam_id",)
     date_hierarchy = "date"
 
 
 class SubjectAdmin(admin.ModelAdmin):
-    list_display = ("name", "get_date", "get_grade", "get_navigation_or_mechanism", "get_exam_type")
-    list_filter = ("exam__exam_type", "exam__grade", "exam__navigation_or_mechanism")
+    list_display = ("name", "get_date", "get_grade", "get_navigation_or_engineering", "get_exam_type")
+    list_filter = ("exam__exam_type", "exam__grade", "exam__navigation_or_engineering")
     search_fields = ("name",)
     date_hierarchy = "exam__date"
 
@@ -23,9 +23,9 @@ class SubjectAdmin(admin.ModelAdmin):
         return obj.exam.get_grade_display()
     get_grade.short_description = '級名'
 
-    def get_navigation_or_mechanism(self, obj):
-        return obj.exam.get_navigation_or_mechanism_display()
-    get_navigation_or_mechanism.short_description = '航海・機関'
+    def get_navigation_or_engineering(self, obj):
+        return obj.exam.get_navigation_or_engineering_display()
+    get_navigation_or_engineering.short_description = '航海・機関'
 
     def get_exam_type(self, obj):
         return obj.exam.get_exam_type_display()
@@ -33,8 +33,8 @@ class SubjectAdmin(admin.ModelAdmin):
 
 
 class QuestionAdmin(admin.ModelAdmin):
-    list_display = ("daimon", "shomon", "edamon", "get_subject", "get_date", "get_grade", "get_navigation_or_mechanism", "get_exam_type")
-    list_filter = ("subject__exam__exam_type", "subject__exam__navigation_or_mechanism","subject__exam__grade",  "subject__name", "daimon", "shomon", "edamon")
+    list_display = ("daimon", "shomon", "edamon", "get_subject", "get_date", "get_grade", "get_navigation_or_engineering", "get_exam_type")
+    list_filter = ("subject__exam__exam_type", "subject__exam__navigation_or_engineering","subject__exam__grade",  "subject__name", "daimon", "shomon", "edamon")
     search_fields = ("subject__name",)
     date_hierarchy = "subject__exam__date"
     radio_fields = {
@@ -55,9 +55,9 @@ class QuestionAdmin(admin.ModelAdmin):
         return obj.subject.exam.get_grade_display()
     get_grade.short_description = '級名'
 
-    def get_navigation_or_mechanism(self, obj):
-        return obj.subject.exam.get_navigation_or_mechanism_display()
-    get_navigation_or_mechanism.short_description = '航海・機関'
+    def get_navigation_or_engineering(self, obj):
+        return obj.subject.exam.get_navigation_or_engineering_display()
+    get_navigation_or_engineering.short_description = '航海・機関'
 
     def get_exam_type(self, obj):
         return obj.subject.exam.get_exam_type_display()

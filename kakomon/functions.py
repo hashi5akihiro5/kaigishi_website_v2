@@ -8,7 +8,7 @@ def find_key_for_value(value, tuple_list):
     return None
 
 
-def get_exam_id(examtype, navigation_or_mechanism, grade, year, month):
+def get_exam_id(examtype, navigation_or_engineering, grade, year, month):
     exam_id = []
     # 試験種類（1:筆記, 2:口述）
     if examtype == 'writing':
@@ -16,7 +16,7 @@ def get_exam_id(examtype, navigation_or_mechanism, grade, year, month):
     else:
         exam_id.append(2)
     # 航機種類（1:航海, 2:機械）
-    if navigation_or_mechanism == 'navigation':
+    if navigation_or_engineering == 'navigation':
         exam_id.append(1)
     else:
         exam_id.append(2)
@@ -51,7 +51,7 @@ def get_file_path(instance, filename):
     return os.path.join(
         str('PDF'),
         str(instance.exam.get_exam_type_display()),
-        str(instance.exam.get_navigation_or_mechanism_display()),
+        str(instance.exam.get_navigation_or_engineering_display()),
         str(instance.exam.get_grade_display()),
         f'{str(instance.exam.date.year)}年',
         f'{str(instance.exam.date.month)}月',
@@ -63,7 +63,7 @@ def get_file_path(instance, filename):
 def get_image_upload_path(instance, filename):
         return os.path.join(
             str(instance.subject.exam.get_exam_type_display()),
-            str(instance.subject.exam.get_navigation_or_mechanism_display()),
+            str(instance.subject.exam.get_navigation_or_engineering_display()),
             str(instance.subject.exam.get_grade_display()),
             f'{str(instance.subject.exam.date.year)}年',
             f'{str(instance.subject.exam.date.month)}月',
