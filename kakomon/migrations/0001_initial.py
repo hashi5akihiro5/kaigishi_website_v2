@@ -32,12 +32,12 @@ class Migration(migrations.Migration):
                 ('date', models.DateField(verbose_name='定期')),
                 ('exam_type', models.CharField(choices=[('writing', '筆記'), ('speaking', '口述')], max_length=8, verbose_name='筆記・口述')),
                 ('grade', models.CharField(choices=[('grade1', '1級'), ('grade2', '2級'), ('grade3', '3級')], max_length=6, verbose_name='級名')),
-                ('navigation_or_engineering', models.CharField(choices=[('navigation', '航海'), ('engineering', '機関')], max_length=10, verbose_name='航海・機関')),
+                ('navigation_or_mechanism', models.CharField(choices=[('navigation', '航海'), ('mechanism', '機関')], max_length=10, verbose_name='航海・機関')),
             ],
             options={
                 'verbose_name': '試験',
                 'verbose_name_plural': '1.試験',
-                'ordering': ['-date', '-navigation_or_engineering'],
+                'ordering': ['-date', '-navigation_or_mechanism'],
             },
         ),
         migrations.CreateModel(
@@ -80,8 +80,8 @@ class Migration(migrations.Migration):
             name='Subject',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(choices=[('navigation', '航海'), ('operation', '運用'), ('law', '法規'), ('english', '英語'), ('engineering1', '機関1'), ('engineering2', '機関2'), ('engineering3', '機関3'), ('working', '執務一般')], max_length=10, verbose_name='科目')),
-                ('name_order', models.IntegerField(choices=[(1, 'navigation'), (2, 'operation'), (3, 'law'), (4, 'english'), (5, 'engineering1'), (6, 'engineering2'), (7, 'engineering3'), (8, 'working')], verbose_name='科目順序')),
+                ('name', models.CharField(choices=[('navigation', '航海'), ('operation', '運用'), ('law', '法規'), ('english', '英語'), ('mechanism1', '機関1'), ('mechanism2', '機関2'), ('mechanism3', '機関3'), ('working', '執務一般')], max_length=10, verbose_name='科目')),
+                ('name_order', models.IntegerField(choices=[(1, 'navigation'), (2, 'operation'), (3, 'law'), (4, 'english'), (5, 'mechanism1'), (6, 'mechanism2'), (7, 'mechanism3'), (8, 'working')], verbose_name='科目順序')),
                 ('file_path', models.FileField(blank=True, null=True, upload_to=kakomon.functions.get_file_path, verbose_name='PDF')),
                 ('exam', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='subjects', to='kakomon.exam', verbose_name='試験')),
             ],

@@ -4,8 +4,8 @@ from django.views.generic import TemplateView, FormView, UpdateView
 from django.contrib.auth.views import LoginView
 from django.urls import reverse, reverse_lazy
 from . import forms
-#from django.views.decorators.csrf import requires_csrf_token
-#from django.http import HttpResponseServerError
+# from django.views.decorators.csrf import requires_csrf_token
+# from django.http import HttpResponseServerError
 
 User = get_user_model()
 
