@@ -3,9 +3,8 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
-from accounts import views
-
-handler500 = views.my_customized_server_error
+# from accounts import views
+# handler500 = views.my_customized_server_error
 
 urlpatterns = [
     path('admin/', admin.site.urls),
