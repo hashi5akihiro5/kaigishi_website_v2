@@ -12,14 +12,14 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AlterModelOptions(
             name='exam',
-            options={'ordering': ['-date', '-navigation_or_engineering', 'grade'], 'verbose_name': '試験', 'verbose_name_plural': '1.試験'},
+            options={'ordering': ['-date', '-navigation_or_mechanism', 'grade'], 'verbose_name': '試験', 'verbose_name_plural': '1.試験'},
         ),
         migrations.AlterModelOptions(
             name='question',
-            options={'ordering': ['-subject__exam__date', '-subject__exam__navigation_or_engineering', 'subject__exam__grade', 'subject__name_order', 'daimon', 'shomon', 'edamon'], 'verbose_name': '問題', 'verbose_name_plural': '3.問題'},
+            options={'ordering': ['-subject__exam__date', '-subject__exam__navigation_or_mechanism', 'subject__exam__grade', 'subject__name_order', 'daimon', 'shomon', 'edamon'], 'verbose_name': '問題', 'verbose_name_plural': '3.問題'},
         ),
         migrations.AlterModelOptions(
             name='subject',
-            options={'ordering': ['-exam__date', '-exam__navigation_or_engineering', 'exam__grade', 'name_order'], 'verbose_name': '科目', 'verbose_name_plural': '2.科目'},
+            options={'ordering': ['-exam__date', '-exam__navigation_or_mechanism', 'exam__grade', 'name_order'], 'verbose_name': '科目', 'verbose_name_plural': '2.科目'},
         ),
     ]
