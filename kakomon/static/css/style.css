@@ -35,17 +35,20 @@ p.no-indent {
   white-space: nowrap;
 }
 
+img {
+  border: 1px solid;
+}
+
 .img-right {
   width: auto;
   float: right;
-  border: 1px solid;
   margin-left: 0.5rem;
   margin-bottom: 0.25rem;
 }
 
 .img-under {
-  width: auto;
-  border: 1px solid;
+  width: 100%;
+  text-align:center;
   margin-bottom: 1rem;
 }
 
