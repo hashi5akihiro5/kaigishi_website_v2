@@ -29,14 +29,18 @@
                 <!-- 小問横 問題説明あり 画像あり 右側 -->
                 {% if question.question_image_position_description_or_question == "description" and question.question_image_position_right_or_under == "right" %}
                 <section>
-                    <img src="{{ question.question_image.url }}" class="img-right" alt="Question Image">
+                    <div class="img-right">
+                        <img src="{{ question.question_image.url }}" alt="Question Image">
+                    </div>
                     <p>{{ question.shomon_description | safe | linebreaksbr }}</p>
                 </section>
                 {% elif question.question_image_position_description_or_question == "description" and question.question_image_position_right_or_under == "under" %}
                 <!-- 小問横 問題説明あり 画像あり 下側 -->
                 <section>
                     <p>{{ question.shomon_description | safe | linebreaksbr }}</p>
-                    <img src="{{ question.question_image.url }}" class="img-under" alt="Question Image">
+                    <div class="img-under">
+                        <img src="{{ question.question_image.url }}" alt="Question Image">
+                    </div>
                 </section>
                 {% else %}
                 <!-- 小問横 問題説明あり 画像なし -->
@@ -46,7 +50,9 @@
                     <!-- 小問 画像あり 右側 -->
                     {% if not question.edamon %}
                     {% if question.question_image_position_description_or_question == "question" and question.question_image_position_right_or_under == "right" %}
-                    <img src="{{ question.question_image.url }}" class="img-right" alt="Question Image"> 
+                    <div class="img-right">
+                        <img src="{{ question.question_image.url }}" alt="Question Image"> 
+                    </div>
                     {% endif %}
                     <!-- 小問  -->
                     {% if question_no_indent %}
@@ -56,7 +62,9 @@
                     {% endif %}
                     <!-- 小問 画像あり 下側 -->
                     {% if question.question_image_position_description_or_question == "question" and question.question_image_position_right_or_under == "under" %}
-                    <img src="{{ question.question_image.url }}" class="img-under" alt="Question Image">
+                    <div class="img-under">
+                        <img src="{{ question.question_image.url }}" alt="Question Image">
+                    </div>
                     {% endif %}
                     {% endif %}
                 </section>
@@ -66,6 +74,13 @@
             {% else %}
             <div class="lh-lg">
                 <p>{{ question.question | safe | linebreaksbr }}</p>
+                {% if question.question_image_position_description_or_question == "question" and question.question_image_position_right_or_under == "under" %}
+                <div class="img-under">
+                    <div>
+                        <img src="{{ question.question_image.url }}" class="img" alt="Question Image">
+                    </div>
+                </div>
+                {% endif %}
             </div>
             {% endif %}
 
@@ -76,7 +91,9 @@
                 <!-- 枝問 画像あり 右側 -->
                 <section>
                     {% if question.question_image_position_description_or_question == "question" and question.question_image_position_right_or_under == "right" %}
-                    <img src="{{ question.question_image.url }}" class="img-right" alt="Question Image"> 
+                    <div class="img-right">
+                        <img src="{{ question.question_image.url }}" alt="Question Image"> 
+                    </div>
                     {% endif %}
                     <!-- 枝問  -->
                     {% if question_no_indent %}
@@ -86,7 +103,9 @@
                     {% endif %}
                     <!-- 枝問 画像あり 下側 -->
                     {% if question.question_image_position_description_or_question == "question" and question.question_image_position_right_or_under == "under" %}
-                    <img src="{{ question.question_image.url }}" class="img-under" alt="Question Image">
+                    <div class="img-under">
+                        <img src="{{ question.question_image.url }}" alt="Question Image">
+                    </div>
                     {% endif %}
                 </section>
             </div>
@@ -99,14 +118,18 @@
                     <div class="details__content">
                         <p class="ps-2 no-indent">{{ question.answer | safe | linebreaksbr }}</p>
                         {% if question.answer_image %}
-                        <img src="{{ question.answer_image.url }}" class="img-fluid border border-secondary col-4 mb-2"alt="Answer Image">
+                        <div>
+                            <img src="{{ question.answer_image.url }}" alt="Answer Image">
+                        </div>
                         {% endif %}
                     </div>
                 {% else %}
                     <div class="details__content">
                         <p class="ps-2">{{ question.answer | safe | linebreaksbr }}</p>
                         {% if question.answer_image %}
-                        <img src="{{ question.answer_image.url }}" class="img-fluid border border-secondary col-4 mb-2" alt="Answer Image">
+                        <div>
+                            <img src="{{ question.answer_image.url }}" alt="Answer Image">
+                        </div>
                         {% endif %}
                     </div>
                 {% endif %}
