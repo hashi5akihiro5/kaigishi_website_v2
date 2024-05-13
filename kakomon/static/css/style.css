@@ -77,7 +77,7 @@ img {
   width: 100px;
 }
 
-.dashed {
+.dashed-line {
   display: inline-block;
   border: 2px dashed #000;
   width: 100px;
