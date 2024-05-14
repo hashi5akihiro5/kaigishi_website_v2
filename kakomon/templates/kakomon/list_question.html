@@ -4,23 +4,25 @@
 
 {% block content %}
     <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
-        <ol class="breadcrumb">
+        <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item"><a href={% url 'kakomon:index' %}>ホーム</a></li>
             <li class="breadcrumb-item"><a href={% url 'kakomon:list_exam' exam_type navigation_or_engineering grade %}>試験日</a></li>
             <li class="breadcrumb-item"><a href={% url 'kakomon:list_subject' exam_type navigation_or_engineering grade year month %}>科目</a></li>
             <li class="breadcrumb-item active" aria-current="page">問題</li>
         </ol>
     </nav>
-    <div class="title">
+    <div class="title mb-3">
         <h2>{{ exam_type }}試験  {{ navigation_or_engineering }}  {{ grade }}</h2>
-        <h3>{{ year }}年 {{ month }}月 {{ subject }}</h3>
+    </div>
+    <div class="subtitle mb-3">
+        <h3>{{ year }}年度 {{ month }}月 {{ subject }}</h3>
     </div>
     {% regroup questions by daimon as daimon_groups %}
     {% for daimon, questions in daimon_groups %}
         {% for question in questions %}
             <!-- 大問 section -->
             {% ifchanged daimon %}
-            <div class="d-flex">
+            <div class="d-flex mt-4">
                 <p class="daimon"><span class="border p-1 me-2">問題</span>{{ daimon }}</p>
                 <!-- 大問横に問題説明文表示 -->
                 {% if question.daimon_description %}
