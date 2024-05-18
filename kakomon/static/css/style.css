@@ -69,6 +69,7 @@ img {
 .square {
   padding: 0.5em 1em;
   border: 2px solid #000000;
+  display: inline-block;
 }
 
 .solid-line {
