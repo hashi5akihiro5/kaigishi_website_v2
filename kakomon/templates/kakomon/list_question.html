@@ -40,7 +40,7 @@
                 {% if question.question_image_position_description_or_question == "description" and question.question_image_position_right_or_under == "right" %}
                 <section>
                     <div class="img-right">
-                        <img src="{{ question.question_image.url }}" alt="Question Image">
+                        <img src="{{ question.question_image.url }}" class="img-fluid" alt="Question Image">
                     </div>
                     <p>{{ question.shomon_description | safe | linebreaksbr }}</p>
                 </section>
@@ -49,7 +49,7 @@
                 <section>
                     <p>{{ question.shomon_description | safe | linebreaksbr }}</p>
                     <div class="img-under">
-                        <img src="{{ question.question_image.url }}" alt="Question Image">
+                        <img src="{{ question.question_image.url }}" class="img-fluid" alt="Question Image">
                     </div>
                 </section>
                 {% else %}
@@ -61,7 +61,7 @@
                     {% if not question.edamon %}
                     {% if question.question_image_position_description_or_question == "question" and question.question_image_position_right_or_under == "right" %}
                     <div class="img-right">
-                        <img src="{{ question.question_image.url }}" alt="Question Image"> 
+                        <img src="{{ question.question_image.url }}" class="img-fluid" alt="Question Image"> 
                     </div>
                     {% endif %}
                     <!-- 小問  -->
@@ -73,7 +73,7 @@
                     <!-- 小問 画像あり 下側 -->
                     {% if question.question_image_position_description_or_question == "question" and question.question_image_position_right_or_under == "under" %}
                     <div class="img-under">
-                        <img src="{{ question.question_image.url }}" alt="Question Image">
+                        <img src="{{ question.question_image.url }}" class="img-fluid" alt="Question Image">
                     </div>
                     {% endif %}
                     {% endif %}
@@ -87,7 +87,7 @@
                 {% if question.question_image_position_description_or_question == "question" and question.question_image_position_right_or_under == "under" %}
                 <div class="img-under">
                     <div>
-                        <img src="{{ question.question_image.url }}" class="img" alt="Question Image">
+                        <img src="{{ question.question_image.url }}" class="img-fluid" alt="Question Image">
                     </div>
                 </div>
                 {% endif %}
@@ -102,7 +102,7 @@
                 <section>
                     {% if question.question_image_position_description_or_question == "question" and question.question_image_position_right_or_under == "right" %}
                     <div class="img-right">
-                        <img src="{{ question.question_image.url }}" alt="Question Image"> 
+                        <img src="{{ question.question_image.url }}" class="img-fluid" alt="Question Image"> 
                     </div>
                     {% endif %}
                     <!-- 枝問  -->
@@ -114,7 +114,7 @@
                     <!-- 枝問 画像あり 下側 -->
                     {% if question.question_image_position_description_or_question == "question" and question.question_image_position_right_or_under == "under" %}
                     <div class="img-under">
-                        <img src="{{ question.question_image.url }}" alt="Question Image">
+                        <img src="{{ question.question_image.url }}" class="img-fluid" alt="Question Image">
                     </div>
                     {% endif %}
                 </section>
@@ -129,7 +129,7 @@
                         <p class="ps-2 no-indent">{{ question.answer | safe | linebreaksbr }}</p>
                         {% if question.answer_image %}
                         <div>
-                            <img src="{{ question.answer_image.url }}" alt="Answer Image">
+                            <img src="{{ question.answer_image.url }}" class="img-fluid" alt="Answer Image">
                         </div>
                         {% endif %}
                     </div>
@@ -138,7 +138,7 @@
                         <p class="ps-2">{{ question.answer | safe | linebreaksbr }}</p>
                         {% if question.answer_image %}
                         <div>
-                            <img src="{{ question.answer_image.url }}" alt="Answer Image">
+                            <img src="{{ question.answer_image.url }}" class="img-fluid" alt="Answer Image">
                         </div>
                         {% endif %}
                     </div>
