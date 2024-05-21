@@ -107,9 +107,9 @@
                     {% endif %}
                     <!-- 枝問  -->
                     {% if question.question_no_indent %}
-                        <p class="no-indent">{{ question.question | safe | linebreaksbr }}</p>
+                    <p class="no-indent">{{ question.question | safe | linebreaksbr }}</p>
                     {% else %}
-                        <p>{{ question.question | safe | linebreaksbr }}</p>
+                    <p>{{ question.question | safe | linebreaksbr }}</p>
                     {% endif %}
                     <!-- 枝問 画像あり 下側 -->
                     {% if question.question_image_position_description_or_question == "question" and question.question_image_position_right_or_under == "under" %}
