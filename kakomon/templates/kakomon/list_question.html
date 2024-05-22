@@ -106,7 +106,7 @@
                     </div>
                     {% endif %}
                     <!-- 枝問  -->
-                    {% if question_no_indent %}
+                    {% if question.question_no_indent %}
                     <p class="no-indent">{{ question.question | safe | linebreaksbr }}</p>
                     {% else %}
                     <p>{{ question.question | safe | linebreaksbr }}</p>
