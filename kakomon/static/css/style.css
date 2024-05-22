@@ -165,9 +165,9 @@ img {
 }
 
 .profile_table .header {
-  width: 200px;
-  padding: 16px 24px;
-  text-align: left;
+  width: auto;
+  padding: 8px 12px;
+  text-align: center;
   background: #f1f5fa;
 }
 
