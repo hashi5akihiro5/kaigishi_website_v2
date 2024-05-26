@@ -12,53 +12,9 @@
         <title>{% block title %}{% endblock %}</title>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg bg-primary mb-5">
+        <nav class="navbar navbar-expand-lg bg-primary">
             <div class="container">
                 <a class="navbar-brand text-white" href={% url 'kakomon:index' %}>海技士過去問サイト</a>
-                <div class="mx-auto">
-                    <ul class="navbar-nav d-flex justify-content-center align-items-center">
-                        <li class="nav-item dropdown mx-3">
-                            <a class="nav-link dropdown-toggle active text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                筆記試験  航 海
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href={% url 'kakomon:list_exam' "筆記" "航海" "1級" %}>航 海  1級</a></li>
-                                <li><a class="dropdown-item" href={% url 'kakomon:list_exam' "筆記" "航海" "2級" %}>航 海  2級</a></li>
-                                <li><a class="dropdown-item" href={% url 'kakomon:list_exam' "筆記" "航海" "3級" %}>航 海  3級</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown me-3">
-                            <a class="nav-link dropdown-toggle active text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                筆記試験  機 関
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href={% url 'kakomon:list_exam' "筆記" "機関" "1級" %}>機 関  1級</a></li>
-                                <li><a class="dropdown-item" href={% url 'kakomon:list_exam' "筆記" "機関" "2級" %}>機 関  2級</a></li>
-                                <li><a class="dropdown-item" href={% url 'kakomon:list_exam' "筆記" "機関" "3級" %}>機 関  3級</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown me-3">
-                            <a class="nav-link dropdown-toggle active text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                口述試験  航 海
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href={% url 'kakomon:list_exam' "口述" "航海" "1級" %}>航 海  1級</a></li>
-                                <li><a class="dropdown-item" href={% url 'kakomon:list_exam' "口述" "航海" "2級" %}>航 海  2級</a></li>
-                                <li><a class="dropdown-item" href={% url 'kakomon:list_exam' "口述" "航海" "3級" %}>航 海  3級</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle active text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                口述試験  機 関
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href={% url 'kakomon:list_exam' "口述" "機関" "1級" %}>機 関  1級</a></li>
-                                <li><a class="dropdown-item" href={% url 'kakomon:list_exam' "口述" "機関" "2級" %}>機 関  2級</a></li>
-                                <li><a class="dropdown-item" href={% url 'kakomon:list_exam' "口述" "機関" "3級" %}>機 関  3級</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="ナビゲーションの切替"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse align-items-center" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
@@ -72,6 +28,7 @@
                 </div>
             </div>
         </nav>
+        {% block exam_nav %}{% endblock %}
         <main class="mx-5">
             {% if messages %}
                 <div class="messages">
