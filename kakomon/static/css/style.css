@@ -10,7 +10,7 @@
   mjx-mtable {
     font-size: 15px;
   }
-} 
+}
 
 /* 最初の１行のスペース */
 p {
@@ -42,6 +42,7 @@ p.no-indent {
   white-space: nowrap;
 }
 
+/* 画像設定 */
 img {
   border: 1px solid;
 }
@@ -57,6 +58,12 @@ img {
   width: auto;
   text-align:center;
   margin-bottom: 1rem;
+}
+
+@media (max-width: 600px) {
+  .img-right {
+    float: none;
+  }
 }
 
 /* 問題装飾 */
