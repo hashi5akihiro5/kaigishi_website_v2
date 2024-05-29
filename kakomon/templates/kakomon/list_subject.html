@@ -19,7 +19,7 @@
     <div class="d-flex justify-content-center">
         {% for subject in subjects %}
             <div class="col-3 d-flex justify-content-center align-items-center flex-column">
-                <a type="button" class="px-4 mb-2 btn btn-outline-primary" href={% url 'kakomon:list_question' subject.exam.get_exam_type_display subject.exam.get_navigation_or_engineering_display subject.exam.get_grade_display subject.exam.date.year subject.exam.date.month subject.get_name_display %}>{{ subject.get_name_display }}</a>
+                <a type="button" class="px-sm-4 px-3 mb-2 btn btn-outline-primary" href={% url 'kakomon:list_question' subject.exam.get_exam_type_display subject.exam.get_navigation_or_engineering_display subject.exam.get_grade_display subject.exam.date.year subject.exam.date.month subject.get_name_display %}>{{ subject.get_name_display }}</a>
                 {% if subject.file_path %}
                 <a href="{{ subject.file_path.url }}" target="_blank">{{ subject.get_name_display }}.pdf</a>
                 {% endif %}

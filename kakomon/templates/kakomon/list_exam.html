@@ -19,7 +19,7 @@
         </div>
         <div class="month-section mb-3">
             {% for exam in date_group.list %}
-                <a type="button" class="px-4 btn btn-outline-primary" href={% url 'kakomon:list_subject' exam.get_exam_type_display exam.get_navigation_or_engineering_display exam.get_grade_display exam.date.year exam.date.month %}>
+                <a type="button" class="px-sm-4 px-3 btn btn-outline-primary" href={% url 'kakomon:list_subject' exam.get_exam_type_display exam.get_navigation_or_engineering_display exam.get_grade_display exam.date.year exam.date.month %}>
                     {{ exam.date.month }} 月度
                 </a>
             {% endfor %}
