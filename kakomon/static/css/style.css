@@ -5,6 +5,13 @@
     box-sizing: border-box;
 }
 
+/* MathJax設定 */
+@media (max-width: 600px) {
+  mjx-mtable {
+    font-size: 11px;
+  }
+} 
+
 /* 最初の１行のスペース */
 p {
   text-indent: 15px;
