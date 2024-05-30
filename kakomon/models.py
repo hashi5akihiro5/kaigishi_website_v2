@@ -33,7 +33,7 @@ class Subject(models.Model):
         super().save(*args, **kwargs)
     
     def __str__(self):
-        return f'{self.exam.date.year}年 {self.exam.date.month}月 {self.exam.get_exam_type_display()} {self.exam.get_grade_display()} {self.exam.get_navigation_or_engineering_display()} {self.get_name_display()}'
+        return f'{self.exam.date.year}年 {self.exam.date.month}月 {self.exam.get_exam_type_display()} {self.exam.get_navigation_or_engineering_display()} {self.exam.get_grade_display()} {self.get_name_display()}'
     
     class Meta:
         ordering = ["-exam__date", "-exam__navigation_or_engineering", "exam__grade", "name_order"]
@@ -62,9 +62,9 @@ class Question(models.Model):
 
     def __str__(self):
         if self.edamon:
-            return f'{self.subject.exam.date.year}年 {self.subject.exam.date.month}月 {self.subject.exam.get_exam_type_display()} {self.subject.exam.get_grade_display()} {self.subject.exam.get_navigation_or_engineering_display()} {self.subject.get_name_display()}_大問{self.daimon}_小問{self.shomon}_枝問{self.edamon}'
+            return f'{self.subject.exam.date.year}年 {self.subject.exam.date.month}月 {self.subject.exam.get_exam_type_display()} {self.subject.exam.get_navigation_or_engineering_display()} {self.subject.exam.get_grade_display()} {self.subject.get_name_display()}_大問{self.daimon}_小問{self.shomon}_枝問{self.edamon}'
         else:
-            return f'{self.subject.exam.date.year}年 {self.subject.exam.date.month}月 {self.subject.exam.get_exam_type_display()} {self.subject.exam.get_grade_display()} {self.subject.exam.get_navigation_or_engineering_display()} {self.subject.get_name_display()}_大問{self.daimon}_小問{self.shomon}'
+            return f'{self.subject.exam.date.year}年 {self.subject.exam.date.month}月 {self.subject.exam.get_exam_type_display()} {self.subject.exam.get_navigation_or_engineering_display()} {self.subject.exam.get_grade_display()} {self.subject.get_name_display()}_大問{self.daimon}_小問{self.shomon}'
     
     class Meta:
         ordering = ["-subject__exam__date", "-subject__exam__navigation_or_engineering", "subject__exam__grade", "subject__name_order", "daimon", "shomon", "edamon"]
