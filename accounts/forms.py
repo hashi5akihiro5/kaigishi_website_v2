@@ -118,23 +118,23 @@ class ContactForm(forms.Form):
         )
     )
 
-    subject = forms.CharField(
-        label="件名",
-        max_length=100,
-        widget=forms.TextInput(
-            attrs={
-                "class": "form-control",
-                "placeholder": "件名",
-            }
-        )
-    )
+    subject = forms.ChoiceField(
+        choices=( 
+        (1, '1. 問題 訂正'), 
+        (2, '2. 解答 作成'), 
+        (3, '3. 新規問題 追加'), 
+        (4, '4. その他')
+        ),
+        required=True,
+        widget=forms.widgets.Select
+    ) 
 
     message = forms.CharField(
         label="お問合わせ内容",
         widget=forms.Textarea(
             attrs={
                 "class": "form-control",
-                "placeholder": "お問合わせ内容",
+                "placeholder": "お問合わせ内容（例：問題訂正） \n \n試験日: 2023年7月 \n筆記・口述: 筆記 \n航海・機関: 航海1級 \n 科 目: 航海 \n問題番号: 大問1 小問1 \n問題内容: ここに問題を記述する。"
             }
         )
     )
