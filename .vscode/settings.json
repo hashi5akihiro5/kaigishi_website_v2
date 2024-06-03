@@ -1,0 +1,16 @@
+{
+    "liveServer.settings.port": 8000,
+
+    "[python]": {
+        // Blackでフォーマット
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnType": true,
+        "editor.formatOnPaste": true,
+        "editor.formatOnSave": true,       // 保存時に適用
+        // isortでフォーマット
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit" // 保存時に適用
+        },
+        "isort.args": ["--profile", "black"],
+    }
+}
