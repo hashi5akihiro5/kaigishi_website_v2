@@ -17,9 +17,9 @@
         <div class="subtitle mb-3">
             <h3>{{ date_group.grouper }}年度</h3>
         </div>
-        <div class="month-section mb-3">
+        <div class="d-flex justify-content-evenly align-items-center mb-3">
             {% for exam in date_group.list %}
-                <a type="button" class="px-sm-4 px-3 btn btn-outline-primary" href={% url 'kakomon:list_subject' exam.get_exam_type_display exam.get_navigation_or_engineering_display exam.get_grade_display exam.date.year exam.date.month %}>
+                <a type="button" class="col-3 px-sm-4 px-3 btn btn-outline-primary" href={% url 'kakomon:list_subject' exam.get_exam_type_display exam.get_navigation_or_engineering_display exam.get_grade_display exam.date.year exam.date.month %}>
                     {{ exam.date.month }} 月度
                 </a>
             {% endfor %}
