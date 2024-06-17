@@ -15,7 +15,7 @@
         <h2>{{ exam_type }}試験  {{ navigation_or_engineering }}  {{ grade }}</h2>
     </div>
     <div class="subtitle mb-3">
-        <h3>{{ year }}年度 {{ month }}月 {{ subject }}</h3>
+        <h3>{{ year }}年 {{ month }}月 {{ subject }}</h3>
     </div>
     {% regroup questions by daimon as daimon_groups %}
     {% for daimon, questions in daimon_groups %}
