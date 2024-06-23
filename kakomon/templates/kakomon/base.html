@@ -32,7 +32,7 @@
             </div>
         </nav>
         {% block exam_nav %}{% endblock %}
-        <main class="mx-sm-5 mx-1">
+        <main>
             {% if messages %}
                 <div class="messages">
                     {% for message in messages %}
@@ -43,11 +43,11 @@
                     {% endfor %}
                 </div>
             {% endif %}
-            <div class="container-fluid ms-1 mb-3">
+            <div class="container-fluid">
                 {% block base_page %}{% endblock %}
             </div>
         </main>
-        <footer class="py-2 bg-dark">
+        <footer class="py-4 bg-dark">
             {% block footer %}{% include "kakomon/base_footer.html" %}{% endblock %}
         </footer>
         <!-- Option 1: Bootstrap Bundle with Popper -->
