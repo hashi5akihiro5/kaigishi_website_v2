@@ -31,37 +31,35 @@ class SubjectAdmin(admin.ModelAdmin):
     search_fields = ("name",)
     date_hierarchy = "exam__date"
 
-    def get_date(self, obj):
-        return obj.exam.date
-
-    get_date.short_description = "定期"
-
-    def get_grade(self, obj):
-        return obj.exam.get_grade_display()
-
-    get_grade.short_description = "級名"
-
-    def get_navigation_or_engineering(self, obj):
-        return obj.exam.get_navigation_or_engineering_display()
-
-    get_navigation_or_engineering.short_description = "航海・機関"
-
+    @admin.display(description="筆記・口述")
     def get_exam_type(self, obj):
         return obj.exam.get_exam_type_display()
 
-    get_exam_type.short_description = "筆記・口述"
+    @admin.display(description="航海・機関")
+    def get_navigation_or_engineering(self, obj):
+        return obj.exam.get_navigation_or_engineering_display()
+
+    @admin.display(description="級名")
+    def get_grade(self, obj):
+        return obj.exam.get_grade_display()
+
+    @admin.display(description="定期")
+    def get_date(self, obj):
+        return obj.exam.date
 
 
 class QuestionAdmin(admin.ModelAdmin):
     list_display = (
+        "get_exam_type",
+        "get_navigation_or_engineering",
+        "get_grade",
+        "get_date",
+        "get_subject",
+        "category",
+        "get_tags_display",
         "daimon",
         "shomon",
         "edamon",
-        "get_subject",
-        "get_date",
-        "get_grade",
-        "get_navigation_or_engineering",
-        "get_exam_type",
     )
     list_filter = (
         "subject__exam__exam_type",
@@ -80,30 +78,31 @@ class QuestionAdmin(admin.ModelAdmin):
         "answer_image_position_right_or_under": admin.HORIZONTAL,
     }
 
-    def get_subject(self, obj):
-        return obj.subject.get_name_display()
-
-    get_subject.short_description = "科目"
-
-    def get_date(self, obj):
-        return obj.subject.exam.date
-
-    get_date.short_description = "定期"
-
-    def get_grade(self, obj):
-        return obj.subject.exam.get_grade_display()
-
-    get_grade.short_description = "級名"
-
-    def get_navigation_or_engineering(self, obj):
-        return obj.subject.exam.get_navigation_or_engineering_display()
-
-    get_navigation_or_engineering.short_description = "航海・機関"
-
+    @admin.display(ordering="subject__exam__exam_type", description="筆記・口述")
     def get_exam_type(self, obj):
         return obj.subject.exam.get_exam_type_display()
 
-    get_exam_type.short_description = "筆記・口述"
+    @admin.display(
+        ordering="subject__exam__navigation_or_engineering", description="航海・機関"
+    )
+    def get_navigation_or_engineering(self, obj):
+        return obj.subject.exam.get_navigation_or_engineering_display()
+
+    @admin.display(ordering="subject__exam__grade", description="級名")
+    def get_grade(self, obj):
+        return obj.subject.exam.get_grade_display()
+
+    @admin.display(ordering="subject__name", description="科目")
+    def get_subject(self, obj):
+        return obj.subject.get_name_display()
+
+    @admin.display(ordering="subject__exam__date", description="定期")
+    def get_date(self, obj):
+        return obj.subject.exam.date
+
+    @admin.display(ordering="tags", description="タグ")
+    def get_tags_display(self, obj):
+        return ", ".join([tag.name for tag in obj.tags.all()])
 
 
 class CategoryAdmin(admin.ModelAdmin):
