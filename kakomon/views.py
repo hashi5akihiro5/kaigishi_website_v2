@@ -139,6 +139,10 @@ class QuestionListView(ListView):
         queryset = queryset.filter(
             subject__exam__exam_id=self.exam_id, subject__name=self.subject
         )
+
+        # カテゴライズ
+        queryset = queryset.all().order_by("category")
+
         return queryset
 
     def get_context_data(self, **kwargs):

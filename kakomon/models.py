@@ -12,7 +12,35 @@ from .constants import (
 )
 from .functions import default_exam_id, get_file_path, get_image_upload_path
 
-"""試験モデル"""
+"""1.カテゴリーモデル"""
+
+
+class Category(models.Model):
+    name = models.CharField(verbose_name="カテゴリー", max_length=255)
+
+    class Meta:
+        verbose_name = "カテゴリー"
+        verbose_name_plural = "1.カテゴリー"
+
+    def __str__(self):
+        return self.name
+
+
+"""2.タグモデル"""
+
+
+class Tag(models.Model):
+    name = models.CharField(verbose_name="タグ", max_length=255)
+
+    class Meta:
+        verbose_name = "タグ"
+        verbose_name_plural = "2.タグ"
+
+    def __str__(self):
+        return self.name
+
+
+"""3.試験モデル"""
 
 
 class Exam(models.Model):
@@ -32,10 +60,10 @@ class Exam(models.Model):
     class Meta:
         ordering = ["-date", "-navigation_or_engineering", "grade"]
         verbose_name = "試験"
-        verbose_name_plural = "1.試験"
+        verbose_name_plural = "3.試験"
 
 
-"""科目モデル"""
+"""4.科目モデル"""
 
 
 class Subject(models.Model):
@@ -65,14 +93,18 @@ class Subject(models.Model):
             "name_order",
         ]
         verbose_name = "科目"
-        verbose_name_plural = "2.科目"
+        verbose_name_plural = "4.科目"
 
 
-"""問題モデル"""
+"""5.問題モデル"""
 
 
 class Question(models.Model):
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE, verbose_name="科目")
+    category = models.ForeignKey(
+        Category, on_delete=models.CASCADE, null=True, blank=True
+    )
+    tags = models.ManyToManyField(Tag, blank=True)
     daimon = models.PositiveSmallIntegerField(verbose_name="大問")
     daimon_description = models.TextField(
         verbose_name="大問説明", null=True, blank=True
@@ -150,38 +182,10 @@ class Question(models.Model):
             "edamon",
         ]
         verbose_name = "問題"
-        verbose_name_plural = "3.問題"
+        verbose_name_plural = "5.問題"
 
 
-"""カテゴリーモデル"""
-
-
-class Category(models.Model):
-    name = models.CharField(verbose_name="カテゴリー", max_length=255)
-
-    class Meta:
-        verbose_name = "カテゴリー"
-        verbose_name_plural = "4.カテゴリー"
-
-    def __str__(self):
-        return self.name
-
-
-"""タグモデル"""
-
-
-class Tag(models.Model):
-    name = models.CharField(verbose_name="タグ", max_length=255)
-
-    class Meta:
-        verbose_name = "タグ"
-        verbose_name_plural = "5.タグ"
-
-    def __str__(self):
-        return self.name
-
-
-"""類似問題モデル(中間テーブル)"""
+"""6.類似問題モデル(中間テーブル)"""
 
 
 class SimilarQuestion(models.Model):
