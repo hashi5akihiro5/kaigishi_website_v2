@@ -30,10 +30,14 @@ p.no-indent {
 .dropdown:hover>.dropdown-menu {
     display: block;
 }
-  
-.dropdown>.dropdown-toggle:active {
-    /*Without this, clicking will make it sticky*/
-    pointer-events: none;
+
+.dropdown:hover > .nav-link{
+  color: var(--bs-success);
+  opacity: 0.75;
+}
+
+.dropdown-menu .dropdown-item:hover {
+  background-color: var(--bs-success-bg-subtle);
 }
 
 /* 問題設定 */
