@@ -3,50 +3,50 @@
 {% block title %}海技士過去問サイト{% endblock %}
 
 {% block exam_nav %}
-<div class="bg-light py-3">
+<nav>
     <ul class="nav justify-content-center">
-        <li class="col-3 nav-item dropdown border-end">
-            <a class="nav-link text-center active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <li class="col-lg-2 col-3 nav-item dropdown border-end bg-light py-3">
+            <a class="nav-link text-center active fs-5 fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 筆記試験  航 海
             </a>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu w-100">
                 <li><a class="dropdown-item" href={% url 'kakomon:list_exam' "筆記" "航海" "1級" %}>航 海  1級</a></li>
                 <li><a class="dropdown-item" href={% url 'kakomon:list_exam' "筆記" "航海" "2級" %}>航 海  2級</a></li>
                 <li><a class="dropdown-item" href={% url 'kakomon:list_exam' "筆記" "航海" "3級" %}>航 海  3級</a></li>
             </ul>
         </li>
-        <li class="col-3 nav-item dropdown border-end">
-            <a class="nav-link text-center active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <li class="col-lg-2 col-3 nav-item dropdown border-end bg-light py-3">
+            <a class="nav-link text-center active fs-5 fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 筆記試験  機 関
             </a>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu w-100">
                 <li><a class="dropdown-item" href={% url 'kakomon:list_exam' "筆記" "機関" "1級" %}>機 関  1級</a></li>
                 <li><a class="dropdown-item" href={% url 'kakomon:list_exam' "筆記" "機関" "2級" %}>機 関  2級</a></li>
                 <li><a class="dropdown-item" href={% url 'kakomon:list_exam' "筆記" "機関" "3級" %}>機 関  3級</a></li>
             </ul>
         </li>
-        <li class="col-3 nav-item dropdown border-end">
-            <a class="nav-link text-center active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <li class="col-lg-2 col-3 nav-item dropdown border-end bg-light py-3">
+            <a class="nav-link text-center active fs-5 fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 口述試験  航 海
             </a>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu w-100">
                 <li><a class="dropdown-item" href={% url 'kakomon:list_exam' "口述" "航海" "1級" %}>航 海  1級</a></li>
                 <li><a class="dropdown-item" href={% url 'kakomon:list_exam' "口述" "航海" "2級" %}>航 海  2級</a></li>
                 <li><a class="dropdown-item" href={% url 'kakomon:list_exam' "口述" "航海" "3級" %}>航 海  3級</a></li>
             </ul>
         </li>
-        <li class="col-3 nav-item dropdown">
-            <a class="nav-link text-center active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <li class="col-lg-2 col-3 nav-item dropdown bg-light py-3">
+            <a class="nav-link text-center active fs-5 fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 口述試験  機 関
             </a>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu w-100">
                 <li><a class="dropdown-item" href={% url 'kakomon:list_exam' "口述" "機関" "1級" %}>機 関  1級</a></li>
                 <li><a class="dropdown-item" href={% url 'kakomon:list_exam' "口述" "機関" "2級" %}>機 関  2級</a></li>
                 <li><a class="dropdown-item" href={% url 'kakomon:list_exam' "口述" "機関" "3級" %}>機 関  3級</a></li>
             </ul>
         </li>
     </ul>
-</div>
+</nav>
 {% endblock %}
 {% block content %}
 <!-- Hero section -->
