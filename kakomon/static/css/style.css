@@ -31,6 +31,11 @@ p.no-indent {
     display: block;
 }
 
+.dropdown>.nav-link:active {
+    /*Without this, clicking will make it sticky*/
+    pointer-events: none;
+}
+
 .dropdown:hover > .nav-link{
   color: var(--bs-success);
   opacity: 0.75;
