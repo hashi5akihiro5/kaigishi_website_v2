@@ -26,6 +26,11 @@ p.no-indent {
   white-space: nowrap;
 }
 
+.nav-link {
+  color: var(--bs-primary);
+  font-size: 20px;
+}
+
 /* ドロップダウン設定 */
 .dropdown:hover>.dropdown-menu {
     display: block;
@@ -37,12 +42,14 @@ p.no-indent {
 }
 
 .dropdown:hover > .nav-link{
-  color: var(--bs-success);
-  opacity: 0.75;
+  color: var(--bs-primary);
+  font-weight: bold;
 }
 
 .dropdown-menu .dropdown-item:hover {
-  background-color: var(--bs-success-bg-subtle);
+  color: var(--bs-primary);
+  font-weight: bold;
+  background-color: var(--bs-primary-bg-subtle);
 }
 
 /* 問題設定 */
