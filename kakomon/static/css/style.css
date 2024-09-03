@@ -33,10 +33,15 @@ p.no-indent {
 
 .nav-link {
   color: var(--bs-primary);
-  font-size: 20px;
+  font-size: clamp(0.938rem, 0.824rem + 0.57vw, 1.25rem);
 }
 
 /* ドロップダウン設定 */
+.dropdown .dropdown-menu{
+  width: 100%;
+  min-width: 100px;
+}
+
 .dropdown:hover>.dropdown-menu {
     display: block;
 }
