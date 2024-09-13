@@ -6,7 +6,8 @@
     <nav class="border-bottom mt-3 mb-4" style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href={% url 'kakomon:index' %}>ホーム</a></li>
-            <li class="breadcrumb-item active" aria-current="page">試験日</li>
+            <li class="breadcrumb-item"><a href={% url 'kakomon:list_examsubject' exam_type navigation_or_engineering grade %}>{{ exam_type }} {{ navigation_or_engineering }} {{ grade }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">年月別</li>
         </ol>
     </nav>
     <div class="title mb-3">

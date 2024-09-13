@@ -10,9 +10,9 @@
                 筆記試験  航 海
             </a>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href={% url 'kakomon:list_exam' "筆記" "航海" "1級" %}>航 海  1級</a></li>
-                <li><a class="dropdown-item" href={% url 'kakomon:list_exam' "筆記" "航海" "2級" %}>航 海  2級</a></li>
-                <li><a class="dropdown-item" href={% url 'kakomon:list_exam' "筆記" "航海" "3級" %}>航 海  3級</a></li>
+                <li><a class="dropdown-item" href={% url 'kakomon:list_examsubject' "筆記" "航海" "1級" %}>航 海  1級</a></li>
+                <li><a class="dropdown-item" href={% url 'kakomon:list_examsubject' "筆記" "航海" "2級" %}>航 海  2級</a></li>
+                <li><a class="dropdown-item" href={% url 'kakomon:list_examsubject' "筆記" "航海" "3級" %}>航 海  3級</a></li>
             </ul>
         </li>
         <li class="col-lg-2 col-3 nav-item dropdown border-end bg-light py-3">
@@ -20,9 +20,9 @@
                 筆記試験  機 関
             </a>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href={% url 'kakomon:list_exam' "筆記" "機関" "1級" %}>機 関  1級</a></li>
-                <li><a class="dropdown-item" href={% url 'kakomon:list_exam' "筆記" "機関" "2級" %}>機 関  2級</a></li>
-                <li><a class="dropdown-item" href={% url 'kakomon:list_exam' "筆記" "機関" "3級" %}>機 関  3級</a></li>
+                <li><a class="dropdown-item" href={% url 'kakomon:list_examsubject' "筆記" "機関" "1級" %}>機 関  1級</a></li>
+                <li><a class="dropdown-item" href={% url 'kakomon:list_examsubject' "筆記" "機関" "2級" %}>機 関  2級</a></li>
+                <li><a class="dropdown-item" href={% url 'kakomon:list_examsubject' "筆記" "機関" "3級" %}>機 関  3級</a></li>
             </ul>
         </li>
         <li class="col-lg-2 col-3 nav-item dropdown border-end bg-light py-3">
@@ -30,9 +30,9 @@
                 口述試験  航 海
             </a>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href={% url 'kakomon:list_exam' "口述" "航海" "1級" %}>航 海  1級</a></li>
-                <li><a class="dropdown-item" href={% url 'kakomon:list_exam' "口述" "航海" "2級" %}>航 海  2級</a></li>
-                <li><a class="dropdown-item" href={% url 'kakomon:list_exam' "口述" "航海" "3級" %}>航 海  3級</a></li>
+                <li><a class="dropdown-item" href={% url 'kakomon:list_subject' "口述" "航海" "1級" "0001" "01" %}>航 海  1級</a></li>
+                <li><a class="dropdown-item" href={% url 'kakomon:list_subject' "口述" "航海" "2級" "0002" "02" %}>航 海  2級</a></li>
+                <li><a class="dropdown-item" href={% url 'kakomon:list_subject' "口述" "航海" "3級" "0003" "03" %}>航 海  3級</a></li>
             </ul>
         </li>
         <li class="col-lg-2 col-3 nav-item dropdown bg-light py-3">
@@ -40,9 +40,9 @@
                 口述試験  機 関
             </a>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href={% url 'kakomon:list_exam' "口述" "機関" "1級" %}>機 関  1級</a></li>
-                <li><a class="dropdown-item" href={% url 'kakomon:list_exam' "口述" "機関" "2級" %}>機 関  2級</a></li>
-                <li><a class="dropdown-item" href={% url 'kakomon:list_exam' "口述" "機関" "3級" %}>機 関  3級</a></li>
+                <li><a class="dropdown-item" href={% url 'kakomon:list_subject' "口述" "機関" "1級" "0001" "01" %}>機 関  1級</a></li>
+                <li><a class="dropdown-item" href={% url 'kakomon:list_subject' "口述" "機関" "2級" "0002" "02" %}>機 関  2級</a></li>
+                <li><a class="dropdown-item" href={% url 'kakomon:list_subject' "口述" "機関" "3級" "0003" "03" %}>機 関  3級</a></li>
             </ul>
         </li>
     </ul>

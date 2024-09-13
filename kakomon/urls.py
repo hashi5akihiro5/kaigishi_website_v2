@@ -7,7 +7,7 @@ app_name = "kakomon"
 urlpatterns = [
     path("", views.IndexView.as_view(), name="index"),
     path(
-        "<exam_type>/<navigation_or_engineering>/<grade>/",
+        "<exam_type>/<navigation_or_engineering>/<grade>/exam",
         views.ExamListView.as_view(),
         name="list_exam",
     ),
@@ -15,6 +15,11 @@ urlpatterns = [
         "<exam_type>/<navigation_or_engineering>/<grade>/<int:year>/<int:month>/",
         views.SubjectListView.as_view(),
         name="list_subject",
+    ),
+    path(
+        "<exam_type>/<navigation_or_engineering>/<grade>/",
+        views.ExamSubjectListView.as_view(),
+        name="list_examsubject",
     ),
     path(
         "<exam_type>/<navigation_or_engineering>/<grade>/<int:year>/<int:month>/<subject>/",

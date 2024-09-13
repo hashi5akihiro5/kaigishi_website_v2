@@ -7,9 +7,10 @@
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item"><a href={% url 'kakomon:index' %}>ホーム</a></li>
             {% if exam_type == "筆記" %}
-            <li class="breadcrumb-item"><a href={% url 'kakomon:list_exam' exam_type navigation_or_engineering grade %}>試験日</a></li>
+            <li class="breadcrumb-item"><a href={% url 'kakomon:list_examsubject' exam_type navigation_or_engineering grade %}>{{ exam_type }} {{ navigation_or_engineering }} {{ grade }}</a></li>
+            <li class="breadcrumb-item"><a href={% url 'kakomon:list_exam' exam_type navigation_or_engineering grade %}>年月別</a></li>
             {% endif %}
-            <li class="breadcrumb-item"><a href={% url 'kakomon:list_subject' exam_type navigation_or_engineering grade year month %}>科目</a></li>
+            <li class="breadcrumb-item"><a href={% url 'kakomon:list_subject' exam_type navigation_or_engineering grade year month %}>{{ year }}年 {{ month }}月 {{ subject }}</a></li>
             <li class="breadcrumb-item active" aria-current="page">問題</li>
         </ol>
     </nav>
