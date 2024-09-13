@@ -1,0 +1,67 @@
+{% extends 'kakomon/base_kakomon.html' %}
+
+{% block title %}海技士過去問試験年度{% endblock %}
+
+{% block content %}
+    <nav class="border-bottom mt-3 mb-4" style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href={% url 'kakomon:index' %}>ホーム</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ exam_type }} {{ navigation_or_engineering }} {{ grade }}</li>
+        </ol>
+    </nav>
+    <div class="title mb-4">
+        <h2>{{ exam_type }}試験  {{ navigation_or_engineering }}  {{ grade }}</h2>
+    </div>
+    {% for examsubject in examsubjects %}
+        <!-- 試験年 -->
+        {% ifchanged examsubject.exam.date.year %}
+        <div class="subtitle border-top border-primary-subtle pt-3 my-3">
+            <h2>{{ examsubject.exam.date.year }}年 </h2>
+        </div>
+        {% endifchanged %}
+        <!-- 試験月 -->
+        {% ifchanged examsubject.exam.date.month %}
+        <div class="subtitle ms-3 mb-3">
+            <h3>{{ examsubject.exam.date.month }}月 定期試験</h3>
+        </div>
+        {% endifchanged %}
+        <!-- 試験 科目 -->
+        {% if navigation_or_engineering == "航海" and grade == "3級" %}
+            {% if forloop.counter0|divisibleby:3 %}
+            <div class="d-flex justify-content-center column-gap-1 mb-5">
+            {% endif %}
+                <div class="col-3 d-flex justify-content-center align-items-center flex-column">
+                    <a type="button" class="col-sm-9 col-12 mb-2 btn btn-outline-primary" href={% url 'kakomon:list_question' examsubject.exam.get_exam_type_display examsubject.exam.get_navigation_or_engineering_display examsubject.exam.get_grade_display examsubject.exam.date.year examsubject.exam.date.month examsubject.get_name_display %}>{{ examsubject.get_name_display }}</a>
+                    {% if examsubject.file_path %}
+                    <a href="{{ examsubject.file_path.url }}" target="_blank" class="d-flex pdf-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-filetype-pdf me-1" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5L14 4.5ZM1.6 11.85H0v3.999h.791v-1.342h.803c.287 0 .531-.057.732-.173.203-.117.358-.275.463-.474a1.42 1.42 0 0 0 .161-.677c0-.25-.053-.476-.158-.677a1.176 1.176 0 0 0-.46-.477c-.2-.12-.443-.179-.732-.179Zm.545 1.333a.795.795 0 0 1-.085.38.574.574 0 0 1-.238.241.794.794 0 0 1-.375.082H.788V12.48h.66c.218 0 .389.06.512.181.123.122.185.296.185.522Zm1.217-1.333v3.999h1.46c.401 0 .734-.08.998-.237a1.45 1.45 0 0 0 .595-.689c.13-.3.196-.662.196-1.084 0-.42-.065-.778-.196-1.075a1.426 1.426 0 0 0-.589-.68c-.264-.156-.599-.234-1.005-.234H3.362Zm.791.645h.563c.248 0 .45.05.609.152a.89.89 0 0 1 .354.454c.079.201.118.452.118.753a2.3 2.3 0 0 1-.068.592 1.14 1.14 0 0 1-.196.422.8.8 0 0 1-.334.252 1.298 1.298 0 0 1-.483.082h-.563v-2.707Zm3.743 1.763v1.591h-.79V11.85h2.548v.653H7.896v1.117h1.606v.638H7.896Z"/>
+                        </svg>
+                        <span>{{ examsubject.get_name_display }}.pdf</span>
+                    </a>
+                    {% endif %}
+                </div>
+            {% if forloop.counter|divisibleby:3 or forloop.last %}
+            </div>
+            {% endif %}
+        {% else %}
+            {% if forloop.counter0|divisibleby:4 %}
+            <div class="d-flex justify-content-center column-gap-1 mb-5">
+            {% endif %}
+                <div class="col-3 d-flex justify-content-center align-items-center flex-column">
+                    <a type="button" class="col-sm-9 col-12 mb-2 btn btn-outline-primary" href={% url 'kakomon:list_question' examsubject.exam.get_exam_type_display examsubject.exam.get_navigation_or_engineering_display examsubject.exam.get_grade_display examsubject.exam.date.year examsubject.exam.date.month examsubject.get_name_display %}>{{ examsubject.get_name_display }}</a>
+                    {% if examsubject.file_path %}
+                    <a href="{{ examsubject.file_path.url }}" target="_blank" class="d-flex pdf-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-filetype-pdf me-1" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5L14 4.5ZM1.6 11.85H0v3.999h.791v-1.342h.803c.287 0 .531-.057.732-.173.203-.117.358-.275.463-.474a1.42 1.42 0 0 0 .161-.677c0-.25-.053-.476-.158-.677a1.176 1.176 0 0 0-.46-.477c-.2-.12-.443-.179-.732-.179Zm.545 1.333a.795.795 0 0 1-.085.38.574.574 0 0 1-.238.241.794.794 0 0 1-.375.082H.788V12.48h.66c.218 0 .389.06.512.181.123.122.185.296.185.522Zm1.217-1.333v3.999h1.46c.401 0 .734-.08.998-.237a1.45 1.45 0 0 0 .595-.689c.13-.3.196-.662.196-1.084 0-.42-.065-.778-.196-1.075a1.426 1.426 0 0 0-.589-.68c-.264-.156-.599-.234-1.005-.234H3.362Zm.791.645h.563c.248 0 .45.05.609.152a.89.89 0 0 1 .354.454c.079.201.118.452.118.753a2.3 2.3 0 0 1-.068.592 1.14 1.14 0 0 1-.196.422.8.8 0 0 1-.334.252 1.298 1.298 0 0 1-.483.082h-.563v-2.707Zm3.743 1.763v1.591h-.79V11.85h2.548v.653H7.896v1.117h1.606v.638H7.896Z"/>
+                        </svg>
+                        <span>{{ examsubject.get_name_display }}.pdf</span>
+                    </a>
+                    {% endif %}
+                </div>
+            {% if forloop.counter|divisibleby:4 or forloop.last %}
+            </div>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+{% endblock %}

@@ -106,6 +106,52 @@ class SubjectListView(ListView):
         return context
 
 
+""" 試験日・科目画面"""
+
+
+class ExamSubjectListView(ListView):
+    template_name = "kakomon/list_examsubject.html"
+    model = Subject
+    context_object_name = "examsubjects"
+
+    def get_form_kwargs(self):
+        self.exam_type = find_key_for_value(self.kwargs.get("exam_type"), EXAMTYPE)
+        self.navigation_or_engineering = find_key_for_value(
+            self.kwargs.get("navigation_or_engineering"), NAVIGATION_OR_ENGINEERING
+        )
+        self.grade = find_key_for_value(self.kwargs.get("grade"), GRADE)
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+
+        self.get_form_kwargs()
+
+        # フィルタリング
+        queryset = queryset.filter(
+            exam__exam_type=self.exam_type,
+            exam__navigation_or_engineering=self.navigation_or_engineering,
+            exam__grade=self.grade,
+        )
+
+        # [日付, 科目] 順で並替え
+        queryset = queryset.order_by("-exam__date", "name_order")
+
+        return queryset
+
+    def get_context_data(self):
+        context = super().get_context_data()
+        context.update(
+            {
+                "exam_type": self.kwargs.get("exam_type"),
+                "navigation_or_engineering": self.kwargs.get(
+                    "navigation_or_engineering"
+                ),
+                "grade": self.kwargs.get("grade"),
+            }
+        )
+        return context
+
+
 """ 問題画面 """
 
 

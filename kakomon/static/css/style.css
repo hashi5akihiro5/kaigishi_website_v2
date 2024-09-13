@@ -21,10 +21,11 @@ p.no-indent {
   text-indent: 0;
 }
 
+
 /* navbar */
 .navbar-brand:hover,
 .navbar-nav .nav-link:hover {
-  opacity: 0.7;
+  opacity: 0.8;
 }
 
 .navbar-nav .nav-link {
@@ -61,6 +62,21 @@ p.no-indent {
   font-weight: bold;
   background-color: var(--bs-primary-bg-subtle);
 }
+
+
+/* 科目画面 */
+/* pdf設定 */
+.pdf-item {
+  text-decoration: none;
+  opacity: 0.8;
+}
+
+.pdf-item:hover {
+  opacity: 1;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
 
 /* 問題設定 */
 /* 大問 */
@@ -321,4 +337,16 @@ header .icons span:last-child{
 }
 .days li.active::before{
   background: #9b599b;
+}
+
+
+/* カテゴリー設定 */
+.category-item {
+  text-decoration: none;
+}
+
+.category-item:hover {
+  color: var(--bs-primary);
+  font-weight: bold;
+  text-decoration: underline;
 }
