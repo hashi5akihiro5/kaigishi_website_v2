@@ -10,7 +10,7 @@
             <li class="breadcrumb-item"><a href={% url 'kakomon:list_examsubject' exam_type navigation_or_engineering grade %}>{{ exam_type }} {{ navigation_or_engineering }} {{ grade }}</a></li>
             <li class="breadcrumb-item"><a href={% url 'kakomon:list_exam' exam_type navigation_or_engineering grade %}>年月別</a></li>
             {% endif %}
-            <li class="breadcrumb-item"><a href={% url 'kakomon:list_subject' exam_type navigation_or_engineering grade year month %}>{{ year }}年 {{ month }}月 {{ subject }}</a></li>
+            <li class="breadcrumb-item"><a href={% url 'kakomon:list_subject' exam_type navigation_or_engineering grade year month %}>{{ year }}年 {{ month }}月 科目一覧</a></li>
             <li class="breadcrumb-item active" aria-current="page">問題</li>
         </ol>
     </nav>
