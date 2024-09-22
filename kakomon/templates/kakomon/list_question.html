@@ -28,7 +28,7 @@
             {% for question in questions %}
                 <!-- 大問 section -->
                 {% ifchanged daimon %}
-                <div class="d-flex mt-4">
+                <div class="d-flex {% if daimon != 1 %}daimon-mt-custom{% else %}mt-4{% endif %}">
                     <p class="daimon"><span class="border p-1 me-2">問題</span>{{ daimon }}</p>
                     <!-- 大問横に問題説明文表示 -->
                     {% if question.daimon_description %}

@@ -80,6 +80,10 @@ p.no-indent {
 
 /* 問題設定 */
 /* 大問 */
+.daimon-mt-custom {
+  margin-top: 5rem;
+}
+
 .daimon {
   white-space: nowrap;
 }
